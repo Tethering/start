@@ -1,0 +1,39 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	//=================================================================================================================
+	// Mirana Ability
+	//=================================================================================================================
+	"fx_test_ability"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    "axe_battle_hunger"
+	 
+		// Modifiers
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"fx_test_modifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"Target" 							"CASTER"
+						"EffectName" 						"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectAttachType"					"follow_overhead"
+						"EffectDurationScale" 				"3"
+						"EffectColorA" 						"0 255 0"
+						"EffectColorB" 						"0 0 255"
+					}
+				}
+			}
+		}
+	}
+}
