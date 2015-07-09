@@ -10,5 +10,7 @@
 	{
 		"override_hero"				"npc_dota_hero_mirana"			// Hero to override
 		"Ability1"					"fx_test_ability"				// Ability 1
+		"Ability2"					"creature_acid_spray"			// Ability 2
+		"Ability3"					"orb_ability_example"			// Ability3
 	}
 }
