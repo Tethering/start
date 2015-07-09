@@ -112,6 +112,7 @@ function CMWGameMode:InitGameMode()
 	GameRules:SetHideKillMessageHeaders( true )
 	GameRules:SetUseUniversalShopMode( true )
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath( false )
+	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
 	
 	----------------------------------------------------
 	--Couple of Listeners
