@@ -1,5 +1,25 @@
 --[[ events.lua ]]
 
+
+--------------------------------------------------------------------------------
+-- Event: OnHeroPicked
+--------------------------------------------------------------------------------
+function CMWGameMode:OnHeroPicked( event )
+	print("CMWGameMode:OnHeroPicked( event )")
+	
+	local pickedHero = EntIndexToHScript( event.heroindex )
+	if pickedHero:IsRealHero() then
+		local ability_leap = pickedHero:FindAbilityByName("standart_leap")
+		ability_leap:UpgradeAbility(true)
+		
+		local ability_arrow = pickedHero:FindAbilityByName("standart_arrow")
+		if ability_arrow then ability_arrow:UpgradeAbility(true) end
+		
+		pickedHero:SetAbilityPoints ( 0 )
+	end
+end
+
+
 ---------------------------------------------------------------------------
 -- Event: Game state change handler
 ---------------------------------------------------------------------------
@@ -22,8 +42,10 @@ function CMWGameMode:OnGameRulesStateChange()
 			self.TEAM_KILLS_TO_WIN = 25
 			nCOUNTDOWNTIMER = 721
 		else
-			self.TEAM_KILLS_TO_WIN = 20
-			nCOUNTDOWNTIMER = 601
+			--self.TEAM_KILLS_TO_WIN = 20
+			--nCOUNTDOWNTIMER = 601
+			self.TEAM_KILLS_TO_WIN = 10
+			nCOUNTDOWNTIMER = 301
 		end
 		--print( "Kills to win = " .. tostring(self.TEAM_KILLS_TO_WIN) )
 
@@ -65,6 +87,8 @@ function CMWGameMode:OnNPCSpawned( event )
 		end
 	end
 end
+
+
 
 ---------------------------------------------------------------------------
 -- Event: OnTeamKillCredit, see if anyone won

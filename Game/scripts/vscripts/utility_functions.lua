@@ -52,7 +52,7 @@ end
 
 
 function CountdownTimer()
-	print("CountdownTimer()")
+	--print("CountdownTimer()")
 	
     nCOUNTDOWNTIMER = nCOUNTDOWNTIMER - 1
     local t = nCOUNTDOWNTIMER

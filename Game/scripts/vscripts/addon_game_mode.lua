@@ -118,9 +118,10 @@ function CMWGameMode:InitGameMode()
 	--Couple of Listeners
 	
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CMWGameMode, 'OnGameRulesStateChange' ), self )
-	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CMWGameMode, "OnNPCSpawned" ), self )
+	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CMWGameMode, "OnNPCSpawned" ), self ) 										--try to remove
 	ListenToGameEvent( "dota_team_kill_credit", Dynamic_Wrap( CMWGameMode, 'OnTeamKillCredit' ), self )
 	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CMWGameMode, 'OnEntityKilled' ), self )
+	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CMWGameMode, 'OnHeroPicked' ), self )
 	
 	
 	Convars:RegisterCommand( "overthrow_set_timer", function(...) return SetTimer( ... ) end, "Set the timer.", FCVAR_CHEAT )
@@ -164,7 +165,7 @@ end
 -- Get the color associated with a given teamID
 ---------------------------------------------------------------------------
 function CMWGameMode:ColorForTeam( teamID )
-	print("CMWGameMode:ColorForTeam( teamID )")
+	--print("CMWGameMode:ColorForTeam( teamID )")
 	
 	local color = self.m_TeamColors[ teamID ]
 	if color == nil then
@@ -178,7 +179,7 @@ end
 -- Put a label over a player's hero so people know who is on what team
 ---------------------------------------------------------------------------
 function CMWGameMode:UpdatePlayerColor( nPlayerID )
-	print("CMWGameMode:UpdatePlayerColor( nPlayerID )")
+	--print("CMWGameMode:UpdatePlayerColor( nPlayerID )")
 	
 	if not PlayerResource:HasSelectedHero( nPlayerID ) then
 		return
@@ -199,7 +200,7 @@ end
 -- Simple scoreboard using debug text
 ---------------------------------------------------------------------------
 function CMWGameMode:UpdateScoreboard()
-	print("CMWGameMode:UpdateScoreboard()")
+	--print("CMWGameMode:UpdateScoreboard()")
 	
 	local sortedTeams = {}
 	for _, team in pairs( self.m_GatheredShuffledTeams ) do
@@ -263,7 +264,7 @@ end
 
 
 function CMWGameMode:OnThink()
-	print("CMWGameMode:OnThink()")
+	--print("CMWGameMode:OnThink()")
 	
 	for nPlayerID = 0, (DOTA_MAX_TEAM_PLAYERS-1) do
 		self:UpdatePlayerColor( nPlayerID )

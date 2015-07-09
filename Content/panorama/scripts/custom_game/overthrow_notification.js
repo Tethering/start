@@ -1,6 +1,6 @@
 "use strict";
 // Notifications for Overthrow
-
+/*
 function OnItemWillSpawn( msg )
 {
 //	$.Msg( "OnItemWillSpawn: ", msg );
@@ -61,7 +61,7 @@ function OnItemDrop( msg )
 function ClearDropMessage()
 {
 	$.GetContextPanel().SetHasClass( "recent_item_drop", false );
-}
+}*/
 
 //==============================================================
 //==============================================================
@@ -151,9 +151,9 @@ function ClearKillMessage()
 }
 
 (function () {
-	GameEvents.Subscribe( "item_will_spawn", OnItemWillSpawn );
-	GameEvents.Subscribe( "item_has_spawned", OnItemHasSpawned );
-	GameEvents.Subscribe( "overthrow_item_drop", OnItemDrop );
+	//GameEvents.Subscribe( "item_will_spawn", OnItemWillSpawn );
+	//GameEvents.Subscribe( "item_has_spawned", OnItemHasSpawned );
+	//GameEvents.Subscribe( "overthrow_item_drop", OnItemDrop );
     GameEvents.Subscribe( "time_remaining", AlertTimer );
     GameEvents.Subscribe( "overtime_alert", OnOvertimeStart );
     GameEvents.Subscribe( "kill_alert", OnLeaderKilled );
