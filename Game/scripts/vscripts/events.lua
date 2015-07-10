@@ -9,11 +9,11 @@ function CMWGameMode:OnHeroPicked( event )
 	
 	local pickedHero = EntIndexToHScript( event.heroindex )
 	if pickedHero:IsRealHero() then
-		local ability_leap = pickedHero:FindAbilityByName("standart_leap")
-		ability_leap:UpgradeAbility(true)
+		local ability_leap = pickedHero:FindAbilityByName("common_leap")
+		if ability_leap then ability_leap:UpgradeAbility(true) end
 		
-		--local ability_arrow = pickedHero:FindAbilityByName("common_arrow")
-		--if ability_arrow then ability_arrow:UpgradeAbility(true) end
+		local ability_arrow = pickedHero:FindAbilityByName("common_arrow_lua")
+		if ability_arrow then ability_arrow:UpgradeAbility(true) end
 		
 		pickedHero:SetAbilityPoints ( 0 )
 	end

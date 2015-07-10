@@ -22,8 +22,8 @@
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
-		"Ability1"					"common_arrow"				// Ability 1
-		"Ability2"					"standart_leap"					//
+		"Ability1"					"common_arrow_lua"				//
+		"Ability2"					"common_leap"					//
 		"Ability3"					""								// 
 		"Ability4"					""								// 
 		

@@ -1,9 +1,9 @@
-mirana_arrow_lua = class({})
-LinkLuaModifier( "modifier_mirana_arrow_lua", LUA_MODIFIER_MOTION_NONE )
+common_arrow_lua = class({})
+LinkLuaModifier( "modifier_common_arrow_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 
-function mirana_arrow_lua:OnSpellStart()
+function common_arrow_lua:OnSpellStart()
 	print ("OnSpellStart")
 	
 	self.mirana_arrow_width = self:GetSpecialValueFor( "arrow_width" )
@@ -12,7 +12,7 @@ function mirana_arrow_lua:OnSpellStart()
 	self.mirana_arrow_vision = self:GetSpecialValueFor( "arrow_vision" )
 	self.mirana_arrow_damage = self:GetSpecialValueFor( "arrow_damage" )
 	self.mirana_arrow_max_stunrange = self:GetSpecialValueFor( "arrow_max_stunrange" )
-	self.mirana_arrow_bonus_damage = self:GetSpecialValueFor( "arrow_bonus_damage" )
+	self.mirana_arrow_bonus_damage = self.mirana_arrow_damage * 0.2
 	self.mirana_arrow_max_stun = self:GetSpecialValueFor( "arrow_max_stun" )
 	self.mirana_arrow_min_stun = self:GetSpecialValueFor( "arrow_min_stun" )
 		
@@ -47,7 +47,7 @@ function mirana_arrow_lua:OnSpellStart()
 end
 
 
-function mirana_arrow_lua:OnProjectileHit( hTarget, vLocation )
+function common_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	print ("OnProjectileHit")
 
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
@@ -70,7 +70,7 @@ function mirana_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		multiplier = math.floor(multiplier * 10) / 10
 		print (multiplier)
 		
-		local additionaldmg = multiplier * self.mirana_arrow_bonus_damage
+		local additionaldmg = math.floor(multiplier * self.mirana_arrow_bonus_damage)
 		print (additionaldmg)
 		
 		local stunduration = multiplier * self.mirana_arrow_max_stun
@@ -92,7 +92,7 @@ function mirana_arrow_lua:OnProjectileHit( hTarget, vLocation )
 
 		ApplyDamage( damage )
 		
-		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_mirana_arrow_lua", { duration = stunduration } )
+		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_common_arrow_lua", { duration = stunduration } )
 		
 		local vDirection = vLocation - self:GetCaster():GetOrigin()
 		vDirection.z = 0.0
