@@ -12,11 +12,13 @@ function CMWGameMode:OnHeroPicked( event )
 		local ability_leap = pickedHero:FindAbilityByName("standart_leap")
 		ability_leap:UpgradeAbility(true)
 		
-		local ability_arrow = pickedHero:FindAbilityByName("standart_arrow")
-		if ability_arrow then ability_arrow:UpgradeAbility(true) end
+		--local ability_arrow = pickedHero:FindAbilityByName("common_arrow")
+		--if ability_arrow then ability_arrow:UpgradeAbility(true) end
 		
 		pickedHero:SetAbilityPoints ( 0 )
 	end
+	
+	print("CMWGameMode:OnHeroPicked( event ) ends")
 end
 
 
