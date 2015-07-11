@@ -17,7 +17,7 @@ function common_arrow_lua:OnSpellStart()
 	self.mirana_arrow_min_stun = self:GetSpecialValueFor( "arrow_min_stun" )
 		
 	
-	EmitSoundOn( "Hero_Lina.DragonSlave.Cast", self:GetCaster() )
+	EmitSoundOn( "Hero_Mirana.ArrowCast", self:GetCaster() )
 	
 	local vTargetPosition = self:GetCursorPosition()
 	vMirana_Arrow_CasterPosition = self:GetCaster():GetOrigin()
@@ -37,20 +37,23 @@ function common_arrow_lua:OnSpellStart()
 		Source = self:GetCaster(),
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		bHasFrontalCone = false,
 		bProvidesVision = true,
 		iVisionRadius = self.mirana_arrow_vision,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber()
 	}
 	
 	ProjectileManager:CreateLinearProjectile( info )
-	EmitSoundOn( "Hero_Lina.DragonSlave", self:GetCaster() )
 end
 
 
 function common_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	print ("OnProjectileHit")
-
+	
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+	
+		
+		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
 	
 		--distance calculations
 		
@@ -94,7 +97,7 @@ function common_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		
 		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_common_arrow_lua", { duration = stunduration } )
 		
-		local vDirection = vLocation - self:GetCaster():GetOrigin()
+		local vDirection = vLocation - vMirana_Arrow_CasterPosition
 		vDirection.z = 0.0
 		vDirection = vDirection:Normalized()
 		

@@ -113,6 +113,9 @@ function CMWGameMode:InitGameMode()
 	GameRules:SetUseUniversalShopMode( true )
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath( false )
 	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
+	--GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( false )
+	GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
+	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 1 )
 	
 	----------------------------------------------------
 	--Couple of Listeners
