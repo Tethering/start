@@ -1,14 +1,14 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Cyclone
+	// Staff of Wizard / Cyclone
 	//=================================================================================================================
 	"item_staff_of_wizard"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"item_cyclone"	
-		"ID"							"2001"
+		"ID"							"1001" // "100" - dota original ID
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
@@ -33,8 +33,8 @@
 		"AbilityManaCost"				"0"
 		"ItemCost"						"350"
 		"ItemShopTags"					"int;regen_mana;move_speed;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"cyclone euls;eul's scepter of divinity"
+		"ItemQuality"					"secret_shop"
+		"ItemAliases"					"cyclone euls; eul's scepter of divinity; staff of wizard"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
@@ -60,6 +60,165 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cyclone_duration"		"2.5"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Health Stone / Vitality Booster
+	//=================================================================================================================
+	"item_health_stone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_vitality_booster"	
+		"ID"							"1101" // "61"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_vitality_booster"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"
+		"ItemShopTags"					"health_pool"
+		"ItemQuality"					"rare"
+		"ItemAliases"					"vitality booster; health stone"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		/ Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"250"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Mask of Anabolism / Morbid Mask
+	//=================================================================================================================
+	"item_mask_of_anabolism"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_lifesteal"	
+		"ID"							"1102" // "26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_helm_of_the_dominator"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"rare"
+		"ItemAliases"					"morbid mask; mask of anabolism"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_percent"		"30"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Dodge Talisman / Talisman of Evasion
+	//=================================================================================================================
+	"item_dodge_talisman"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_talisman_of_evasion"	
+		"ID"							"1103" // "26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_talisman_of_evasion"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"500"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"rare"
+		"ItemAliases"					"morbid mask; mask of anabolism"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_evasion"			"25"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Spectre's Hood / Hood of Defiance
+	//=================================================================================================================
+	"item_spectres_hood"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_hood_of_defiance"	
+		"ID"							"1104" // "26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_hood_of_defiance"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"
+		"ItemShopTags"					"regen_health;magic_resist"
+		"ItemQuality"					"rare"
+		"ItemAliases"					"hood of defiance; spectre's hood"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_spell_resist"	"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"2"
+			}
+			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_resist"		"25"
 			}
 		}
 	}

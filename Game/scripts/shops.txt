@@ -7,12 +7,16 @@
 
 	"attributes"
 	{
-		
+		"item"			"item_health_stone"
+		"item"			"item_mask_of_anabolism"
+		"item"			"item_dodge_talisman"
+		"item"			"item_spectres_hood"
 	}
 
 	"weapons_armor"
 	{
 		"item"			"item_staff_of_wizard"
+
 	}
 			
 	"misc"
