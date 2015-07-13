@@ -11,17 +11,19 @@
 		"item"			"item_mask_of_anabolism"
 		"item"			"item_dodge_talisman"
 		"item"			"item_spectres_hood"
+		"item"			"item_bow_of_wind"
+		"item"			"item_guard_of_freeze"
 	}
 
 	"weapons_armor"
 	{
 		"item"			"item_staff_of_wizard"
-
+		"item"			"item_axe_of_illusion"
 	}
 			
 	"misc"
 	{
-				
+		"item"			"item_earth_arrow"
 	}	
 	
 	// Level 1 - Green Recipes

@@ -15,6 +15,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityTextureName"			"mirana_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
@@ -98,6 +99,116 @@
 		}
 	}
 
+	
+	"earth_arrow_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"mirana_arrow"
+		"FightRecapLevel"				"1"
+		"MaxLevel"             			"1"
+		"ScriptFile"					"earth_arrow_lua"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		//"precache"
+		//{
+		//	"particle" 	"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+		//	"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf"
+		//	"particle"  "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
+		//	"soundfile" "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		//}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+		"AbilityDuration"				"3.11"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_speed"		"857.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_width"		"115"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_range"		"3000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_max_stunrange"	"1500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_min_stun"	"0.01"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_max_stun"	"5.0"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_bonus_damage"	"140"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_vision"	"650"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_damage"	"100"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"earth_duration"	"5"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"earth_slow"		"-60"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"earth_aoe"			"500"
+			}
+		}
+	}
+	
 	//=================================================================================================================
 	// Ability: Mirana Leap
 	//=================================================================================================================
@@ -107,8 +218,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"					"mirana_leap"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityCastAnimation" 		"ACT_DOTA_CAST_ABILITY_3"
 		"MaxLevel"             		"1"
 
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"13.0"

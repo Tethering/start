@@ -1,5 +1,29 @@
 --[[ events.lua ]]
 
+--------------------------------------------------------------------------------
+-- Event: OnItemPurchased
+--------------------------------------------------------------------------------
+function CMWGameMode:OnItemPurchased( event )
+	local ability_name = event.itemname
+	local user = PlayerResource:GetPlayer( event.PlayerID )
+	local hero = PlayerResource:GetPlayer(event.PlayerID):GetAssignedHero()
+	
+
+	if ability_name == "item_earth_arrow" then 
+		if hero:FindAbilityByName("earth_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("common_arrow_lua")
+	
+		hero:AddAbility("earth_arrow_lua")
+		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
+	end
+end
+
 
 --------------------------------------------------------------------------------
 -- Event: OnHeroPicked
@@ -14,6 +38,11 @@ function CMWGameMode:OnHeroPicked( event )
 		
 		local ability_arrow = pickedHero:FindAbilityByName("common_arrow_lua")
 		if ability_arrow then ability_arrow:UpgradeAbility(true) end
+		
+		--local ability_arrow = pickedHero:FindAbilityByName("earth_arrow_lua")
+		--if ability_arrow then ability_arrow:UpgradeAbility(true) end
+		
+		--pickedHero:RemoveAbility("common_arrow_lua")
 		
 		pickedHero:SetAbilityPoints ( 0 )
 	end

@@ -20,6 +20,11 @@ require( "utility_functions" )
 function Precache( context )
 	print("Precache( context )")
 
+	
+	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", context )
+	PrecacheResource( "particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
 	--[[
 		Precache things we know we'll use.  Possible file types include (but not limited to):
 			PrecacheResource( "model", "*.vmdl", context )
@@ -125,6 +130,7 @@ function CMWGameMode:InitGameMode()
 	ListenToGameEvent( "dota_team_kill_credit", Dynamic_Wrap( CMWGameMode, 'OnTeamKillCredit' ), self )
 	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CMWGameMode, 'OnEntityKilled' ), self )
 	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CMWGameMode, 'OnHeroPicked' ), self )
+	ListenToGameEvent( "dota_item_purchased", Dynamic_Wrap( CMWGameMode, 'OnItemPurchased' ), self )
 	
 	
 	Convars:RegisterCommand( "overthrow_set_timer", function(...) return SetTimer( ... ) end, "Set the timer.", FCVAR_CHEAT )
