@@ -31,7 +31,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"ItemCost"						"350"
+		"ItemCost"						"35"
 		"ItemShopTags"					"int;regen_mana;move_speed;hard_to_tag"
 		"ItemQuality"					"secret_shop"
 		"ItemAliases"					"cyclone euls; eul's scepter of divinity; staff of wizard"
@@ -87,7 +87,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"ItemCost"						"700"
+		"ItemCost"						"70"
 		"ItemShopTags"					"hard_to_tag"
 		"ItemQuality"					"secret_shop"
 		"ItemAliases"					"manta style; axe of illusion"
@@ -214,7 +214,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"
+		"ItemCost"						"60"
 		"ItemShopTags"					"health_pool"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"vitality booster; health stone"
@@ -251,7 +251,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"800"
+		"ItemCost"						"80"
 		"ItemShopTags"					"unique"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"morbid mask; mask of anabolism"
@@ -288,7 +288,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"50"
 		"ItemShopTags"					"unique"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"morbid mask; mask of anabolism"
@@ -376,7 +376,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"50"
 		"ItemShopTags" 					"attack_speed"
 		"ItemQuality" 					"rare"
 		"ItemAliases"					"gloves of haste; bow of wind"
@@ -417,7 +417,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"650"
+		"ItemCost"						"65"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"shiva's guard; guard of freeze"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
