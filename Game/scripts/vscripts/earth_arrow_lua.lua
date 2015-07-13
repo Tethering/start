@@ -5,12 +5,6 @@ LinkLuaModifier( "modifier_earth_arrow_thinker_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 
-function earth_arrow_lua:GetAOERadius()
-	return self:GetSpecialValueFor( "earth_aoe" )
-end
-
---------------------------------------------------------------------------------
-
 function earth_arrow_lua:OnSpellStart()
 	print ("OnSpellStart")
 	print(self:GetCursorPosition())

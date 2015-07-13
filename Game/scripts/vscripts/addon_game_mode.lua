@@ -20,11 +20,23 @@ require( "utility_functions" )
 function Precache( context )
 	print("Precache( context )")
 
-	
+	--Earth Arrow
 	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", context )
 	PrecacheResource( "particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
+
+	--Damnation Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", context) 
+	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context) 
+	PrecacheResource("particle", "particles/items2_fx/medallion_of_courage.vpcf", context)
+	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", context) 
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+
+
+	--[[Returns:void
+	Manually precache a single resource
+	]]
 	--[[
 		Precache things we know we'll use.  Possible file types include (but not limited to):
 			PrecacheResource( "model", "*.vmdl", context )

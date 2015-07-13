@@ -16,11 +16,27 @@ function CMWGameMode:OnItemPurchased( event )
 			return
 		end
 		
-		hero:RemoveAbility("earth_arrow_lua")
 		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
 	
 		hero:AddAbility("earth_arrow_lua")
 		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_damnation_arrow" then 
+		if hero:FindAbilityByName("damnation_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+	
+		hero:AddAbility("damnation_arrow_lua")
+		hero:FindAbilityByName("damnation_arrow_lua"):SetLevel(1)
 	end
 end
 

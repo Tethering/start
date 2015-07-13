@@ -24,6 +24,7 @@
 	"misc"
 	{
 		"item"			"item_earth_arrow"
+		"item"			"item_damnation_arrow"
 	}	
 	
 	// Level 1 - Green Recipes

@@ -495,4 +495,27 @@
 		"ItemPermanent" 				"0"
 		"ItemCastOnPickup" 				"1"
 	}
+
+	/=================================================================================================================
+	// Damnation Arrow
+	//=================================================================================================================
+	"item_damnation_arrow"
+	{
+		"ID"							"1202"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_desolator"
+		
+		"ItemCost" 						"100"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+	}
 }
