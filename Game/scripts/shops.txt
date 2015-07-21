@@ -17,6 +17,9 @@
 
 	"weapons_armor"
 	{
+		"item"			"item_shield_of_protection"
+		"item"			"item_drums"
+		"item"			"item_healing_artifact"
 		"item"			"item_staff_of_wizard"
 		"item"			"item_axe_of_illusion"
 	}
@@ -25,6 +28,8 @@
 	{
 		"item"			"item_earth_arrow"
 		"item"			"item_damnation_arrow"
+		"item"			"item_poison_arrow"
+		//"item"			"item_neutron_arrow"
 	}	
 	
 	// Level 1 - Green Recipes

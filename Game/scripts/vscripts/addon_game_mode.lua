@@ -18,7 +18,26 @@ require( "utility_functions" )
 -- Precache
 ---------------------------------------------------------------------------
 function Precache( context )
-	print("Precache( context )")
+
+	--items
+	--Skull of Freeze
+	PrecacheResource( "particle", "particles/items_fx/aura_shivas.vpcf", context )
+
+	--Shield of Protection
+	PrecacheResource( "particle", "particles/items_fx/aura_assault.vpcf", context )
+	PrecacheResource( "particle", "particles/items_fx/buckler.vpcf", context )
+
+	--Drums
+	PrecacheResource( "particle", "particles/items_fx/aura_endurance.vpcf", context )
+	PrecacheResource( "particle", "particles/items_fx/drum_of_endurance_buff.vpcf", context )
+
+	--Healing Artifact
+	PrecacheResource( "particle", "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", context )
+
+	--arrows
+	--Common Arrow
+	PrecacheResource( "particle", "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context )
 
 	--Earth Arrow
 	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context )
@@ -27,11 +46,17 @@ function Precache( context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
 
 	--Damnation Arrow
-	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", context) 
-	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context) 
 	PrecacheResource("particle", "particles/items2_fx/medallion_of_courage.vpcf", context)
-	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", context) 
-	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", context) 
+	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", context) 
+	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context) 
+	--PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+
+
+	--Poison Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf", context)
+
 
 
 	--[[Returns:void

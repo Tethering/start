@@ -91,8 +91,6 @@ function earth_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		print (stunduration)
 	
 	
-	
-	
 		local damage = {
 			victim = hTarget,
 			attacker = self:GetCaster(),
@@ -105,35 +103,10 @@ function earth_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		
 		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_earth_arrow_stun_lua", { duration = stunduration } )
 		
-		local vDirection = vLocation - vMirana_Arrow_CasterPosition
-		vDirection.z = 0.0
-		vDirection = vDirection:Normalized()
-		
-		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_destruction.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex )
-		
-		local nFXIndex2 = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_destruction_sparkles.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex2, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex2 )
 	end
-
-	if hTarget == nil then
-		print ("no vTarget")
-		local vDirection = vLocation - self:GetCaster():GetOrigin()
-		vDirection.z = 0.0
-		vDirection = vDirection:Normalized()
-		
-		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_dustr.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex )
-	end
-	
-	local location = vLocation
-	if not vTarget == nil then location = vTarget:GetOrigin() end
 	
 	local kv = {}
-	CreateModifierThinker( self:GetCaster(), self, "modifier_earth_arrow_thinker_lua", kv, location, self:GetCaster():GetTeamNumber(), false )
+	CreateModifierThinker( self:GetCaster(), self, "modifier_earth_arrow_thinker_lua", kv, vLocation, self:GetCaster():GetTeamNumber(), false )
 	
 	return true
 end

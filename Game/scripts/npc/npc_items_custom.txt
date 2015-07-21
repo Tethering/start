@@ -195,7 +195,364 @@
 			}			
 		}
 	}
+
+	//=================================================================================================================
+	// Shield of Protection
+	//=================================================================================================================
+	"item_shield_of_protection"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2003" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"item_buckler"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"40"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"40"
+		"ItemQuality"					"secret_shop"
+		"ItemShopTags"					"armor;boost_armor"
+		"ItemAliases"					"buckler; shield of protection"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"armor_aura"			"2"
+			}
+			"03"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_active"			"10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_shield_of_protection.lua"
+				"Function"				"item_shield_of_protection_on_spell_start"
+				"ActiveDuration"		"%duration"
+				"ActiveRadius"			"%radius"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_protection_aura"
+			{
+				"Passive" "1" //Apply as soon as the spell is learned
+				"IsHidden"    "1" //Don't show the aura applier
+				
+				"EffectName" 					"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType" 				"follow_origin"
+
+				"Aura"        					"modifier_protection_aura_effect"
+				"Aura_Radius" 					"%radius"
+				"Aura_Teams"  					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"  					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"  					"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				"Aura_ApplyToCaster" 			"1"   //
+			}
+
+			"modifier_protection_aura_effect"
+			{
+				"Properties" 
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_aura"
+				}
+			}
+			"modifier_protection_active"
+			{
+				"Duration"			"%duration"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				
+				"EffectName"			"particles/items_fx/buckler.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor_active"
+				}
+			}
+		}
+	}
 	
+	//=================================================================================================================
+	// Drums
+	//=================================================================================================================
+	"item_drums"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2004" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"item_ancient_janggo"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"45"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"60"
+		"ItemQuality"					"secret_shop"
+		"ItemAliases"					"buckler; shield of protection"
+		"ItemShopTags"					"move_speed;hard_to_tag"
+		"ItemAliases"					"drum of endurance; drums"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"movement_speed_aura"	"40"
+			}
+			"03"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"duration"				"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movement_speed_active"			"30"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_drums.lua"
+				"Function"				"item_drums_on_spell_start"
+				"ActiveDuration"		"%duration"
+				"ActiveRadius"			"%radius"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_protection_aura"
+			{
+				"Passive" "1" //Apply as soon as the spell is learned
+				"IsHidden"    "1" //Don't show the aura applier
+				
+				"EffectName" 					"particles/items_fx/aura_endurance.vpcf"
+				"EffectAttachType" 				"follow_origin"
+
+				"Aura"        					"modifier_protection_aura_effect"
+				"Aura_Radius" 					"%radius"
+				"Aura_Teams"  					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"  					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"  					"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				"Aura_ApplyToCaster" 			"1"   //
+			}
+
+			"modifier_protection_aura_effect"
+			{
+				"Properties" 
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movement_speed_aura"
+				}
+			}
+			"modifier_drums_active"
+			{
+				"Duration"			"%duration"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				
+				"EffectName"			"particles/items_fx/drum_of_endurance_buff.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%movement_speed_aura"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Healing Artifact
+	//=================================================================================================================
+	"item_healing_artifact"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2005" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"item_mekansm"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"35"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"50"
+		"ItemQuality"					"secret_shop"
+		"ItemShopTags"					"boost_health"
+		"ItemAliases"					"mechanism;mekansm; healing artifact"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"heal_amount"				"250"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Chen.HandOfGodHealHero"
+				"Target" 		"TARGET"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf"
+				"EffectAttachType"  "attach_hitloc"
+				"Target"            "TARGET"
+			}
+			
+			"Heal"
+			{
+				"Target"        "TARGET"
+				"HealAmount"	"%heal_amount"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Teleportation
+	//=================================================================================================================
+	"item_teleportation"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2006" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"item_ultimate_orb"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0" // global
+		"AbilityCastPoint"				"3"
+		"AbilityCooldown"				"120"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"75"
+		"ItemQuality"					"secret_shop"
+		"ItemShopTags"					"teleport"
+		"ItemAliases"					"blink dagger; teleport; teleportation"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"heal_amount"				"250"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Chen.HandOfGodHealHero"
+				"Target" 		"TARGET"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf"
+				"EffectAttachType"  "attach_hitloc"
+				"Target"            "TARGET"
+			}
+			
+			"Heal"
+			{
+				"Target"        "TARGET"
+				"HealAmount"	"%heal_amount"
+			}
+		}
+	}
+
 	//=================================================================================================================
 	// Health Stone / Vitality Booster
 	//=================================================================================================================
@@ -472,8 +829,12 @@
 			}
 		}
 	}
+
 	
 	
+	//=================================================================================================================
+	// ARROWS
+	//=================================================================================================================
 	//=================================================================================================================
 	// Earth Arrow
 	//=================================================================================================================
@@ -497,7 +858,7 @@
 		"ItemCastOnPickup" 				"1"
 	}
 
-	/=================================================================================================================
+	//=================================================================================================================
 	// Damnation Arrow
 	//=================================================================================================================
 	"item_damnation_arrow"
@@ -505,6 +866,52 @@
 		"ID"							"1202"
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_desolator"
+		
+		"ItemCost" 						"100"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+	}
+
+	//=================================================================================================================
+	// Neutron Arrow
+	//=================================================================================================================
+	"item_neutron_arrow"
+	{
+		"ID"							"1203"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_mjollnir"
+		
+		"ItemCost" 						"100"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+	}
+
+	//=================================================================================================================
+	// Poison Arrow
+	//=================================================================================================================
+	"item_poison_arrow"
+	{
+		"ID"							"1204"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_orb_of_venom"
 		
 		"ItemCost" 						"100"
 		"ItemKillable" 					"0" 

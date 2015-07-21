@@ -1,6 +1,6 @@
 common_arrow_lua = class({})
 LinkLuaModifier( "modifier_common_arrow_lua", LUA_MODIFIER_MOTION_NONE )
-
+require( "timers" )
 --------------------------------------------------------------------------------
 
 function common_arrow_lua:OnSpellStart()
@@ -96,30 +96,47 @@ function common_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		ApplyDamage( damage )
 		
 		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_common_arrow_lua", { duration = stunduration } )
-		
-		local vDirection = vLocation - vMirana_Arrow_CasterPosition
-		vDirection.z = 0.0
-		vDirection = vDirection:Normalized()
-		
-		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_destruction.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex )
-		
-		local nFXIndex2 = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_destruction_sparkles.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex2, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex2 )
 	end
 
-	if hTarget == nil then
-		local vDirection = vLocation - self:GetCaster():GetOrigin()
-		vDirection.z = 0.0
-		vDirection = vDirection:Normalized()
-		
-		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_mirana/mirana_spell_arrow_dustr.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-		ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
-		ParticleManager:ReleaseParticleIndex( nFXIndex )
-	end
 	
+	
+	--[[local dummi = CreateUnitByName("dummy", vLocation, false, self:GetCaster(), nil, self:GetCaster():GetTeamNumber())
+	--local dummi = self:GetCaster() 
+	print (dummi)
+	dummi:AddAbility("common_arrow_lua")
+	local abil = dummi:FindAbilityByName("common_arrow_lua")
+	print (abil)
+	abil:SetLevel(1)
+	dummi:CastAbilityNoTarget(abil, dummi:GetPlayerOwnerID())
+	print (dummi:GetPlayerOwnerID())]]
+	
+
+
+	--[[name = "common_arrow_lua"
+	dummi = CreateUnitByName("dummy", vLocation, false, self:GetCaster(), nil, self:GetCaster():GetTeamNumber())
+	
+    -- waiting a frame here may be necessary, to prevent a crash.
+    Timers:CreateTimer(.1, function()
+    	dummi:AddAbility(name)
+	    local anim = dummi:FindAbilityByName(name)
+	    anim:SetLevel(1)
+        
+        -- need to wait a frame here, i checked and some animations won't play if the abil is removed right away.
+        Timers:CreateTimer(.1, function()
+        	local newOrder = {
+		 		UnitIndex = dummi:entindex(), 
+		 		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+		 		TargetIndex = nil, --Optional.  Only used when targeting units
+		 		AbilityIndex = anim:entindex(), --Optional.  Only used when casting abilities
+		 		Position = self:GetCaster():GetOrigin(), --Optional.  Only used when targeting the ground
+		 		Queue = 1 --Optional.  Used for queueing up abilities
+	 		}
+	 
+			ExecuteOrderFromTable(newOrder)
+            --dummi:CastAbilityOnPosition(self:GetCaster():GetOrigin(), anim, dummi:GetPlayerOwnerID())
+        end)
+    end)]]
+
 	return true
 end
 --------------------------------------------------------------------------------

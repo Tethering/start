@@ -52,12 +52,15 @@ end
 
 
 function damnation_arrow_lua:OnProjectileHit( hTarget, vLocation )
-	print ("OnProjectileHit")
 	
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 	
 		
 		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
+		
+		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
+		ParticleManager:SetParticleControlEnt( nFXIndex, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, nil, self:GetCaster():GetOrigin(), false )
+		ParticleManager:ReleaseParticleIndex( nFXIndex )
 	
 		--distance calculations
 		

@@ -30,7 +30,28 @@ function modifier_earth_arrow_thinker_lua:OnCreated( kv )
 
 		EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Hero_Brewmaster.ThunderClap", self:GetCaster() )
 
-		UTIL_Remove( self:GetParent() )
+
+
+		--[[
+		local dummi = CreateUnitByName("npc_dummy_blank", self:GetParent():GetOrigin(), false, self:GetCaster(), nil, self:GetCaster():GetTeamNumber())
+		print (dummi)
+		dummi:AddAbility("lycan_summon_wolves")
+		local abil = dummi:FindAbilityByName("lycan_summon_wolves")
+		print (abil)
+		abil:SetLevel(1)
+		dummi:CastAbilityNoTarget(abil, dummi:GetPlayerOwnerID())
+		
+		self:GetParent():AddAbility("lycan_summon_wolves")
+		local abil = self:GetParent():FindAbilityByName("lycan_summon_wolves")
+		print (self:GetParent())
+		print (abil)
+		print (self:GetParent():GetPlayerOwnerID())
+		print (abil:IsOwnersManaEnough())
+		abil:SetLevel(1)
+		self:GetParent():CastAbilityNoTarget(abil, -1)
+		--(self:GetCaster():GetOrigin(), abil, -1)]]
+		
+		--UTIL_Remove( self:GetParent() )
 	end
 end
 
