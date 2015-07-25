@@ -22,6 +22,7 @@
 		"item"			"item_healing_artifact"
 		"item"			"item_staff_of_wizard"
 		"item"			"item_axe_of_illusion"
+		"item"			"item_staff_of_moon"
 	}
 			
 	"misc"
@@ -29,6 +30,7 @@
 		"item"			"item_earth_arrow"
 		"item"			"item_damnation_arrow"
 		"item"			"item_poison_arrow"
+		"item"			"item_vampire_arrow"
 		//"item"			"item_neutron_arrow"
 	}	
 	

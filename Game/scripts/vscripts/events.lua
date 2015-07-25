@@ -21,6 +21,7 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("damnation_arrow_lua")
 		hero:RemoveAbility("neutron_arrow_lua")
 		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
 	
 		hero:AddAbility("earth_arrow_lua")
 		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
@@ -38,6 +39,7 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("damnation_arrow_lua")
 		hero:RemoveAbility("neutron_arrow_lua")
 		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
 	
 		hero:AddAbility("damnation_arrow_lua")
 		hero:FindAbilityByName("damnation_arrow_lua"):SetLevel(1)
@@ -55,6 +57,7 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("damnation_arrow_lua")
 		hero:RemoveAbility("neutron_arrow_lua")
 		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
 	
 		hero:AddAbility("neutron_arrow_lua")
 		hero:FindAbilityByName("neutron_arrow_lua"):SetLevel(1)
@@ -72,9 +75,28 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("damnation_arrow_lua")
 		hero:RemoveAbility("neutron_arrow_lua")
 		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
 	
 		hero:AddAbility("poison_arrow_lua")
 		hero:FindAbilityByName("poison_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_vampire_arrow" then 
+		if hero:FindAbilityByName("vampire_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+	
+		hero:AddAbility("vampire_arrow_lua")
+		hero:FindAbilityByName("vampire_arrow_lua"):SetLevel(1)
 	end
 end
 

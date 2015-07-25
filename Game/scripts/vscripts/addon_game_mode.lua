@@ -34,6 +34,14 @@ function Precache( context )
 	--Healing Artifact
 	PrecacheResource( "particle", "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", context )
 
+	--Staff of Moon
+	PrecacheResource( "model", "models/heroes/drow/drow.vmdl", context )
+	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_projectile.vpcf", context )
+	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_manaburn.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
+	
+	
+
 	--arrows
 	--Common Arrow
 	PrecacheResource( "particle", "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", context )
@@ -56,6 +64,11 @@ function Precache( context )
 	--Poison Arrow
 	PrecacheResource("particle", "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf", context)
+
+
+	--Vampirice Arrow
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+	
 
 
 

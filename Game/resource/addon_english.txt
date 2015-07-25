@@ -3,8 +3,8 @@
 	"Language"		"English"
 	"Tokens"
 	{		
-		"dota_hud_error_tutorial_shop_not_in_range"									"Shop not in Range"
-		//"addon_game_name"															"Mirana Wars Reborn"
+		//"dota_hud_error_tutorial_shop_not_in_range"									"Shop not in Range"
+		"addon_game_name"															"Mirana Wars Reborn"
 
 	}
 }

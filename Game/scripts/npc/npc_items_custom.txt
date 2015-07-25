@@ -307,6 +307,8 @@
 			}
 		}
 	}
+
+
 	
 	//=================================================================================================================
 	// Drums
@@ -549,6 +551,70 @@
 			{
 				"Target"        "TARGET"
 				"HealAmount"	"%heal_amount"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Staff of Moon
+	//=================================================================================================================
+	"item_staff_of_moon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2007" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"item_mystic_staff"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCooldown"				"35"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"50"
+		"ItemQuality"					"secret_shop"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"armor_aura"			"2"
+			}
+			"03"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_active"			"10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_staff_of_moon.lua"
+				"Function"				"item_staff_of_moon_on_spell_start"
 			}
 		}
 	}
@@ -912,6 +978,29 @@
 		"ID"							"1204"
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_orb_of_venom"
+		
+		"ItemCost" 						"100"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+	}
+
+	//=================================================================================================================
+	// Vampire Arrow
+	//=================================================================================================================
+	"item_vampire_arrow"
+	{
+		"ID"							"1205"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_satanic"
 		
 		"ItemCost" 						"100"
 		"ItemKillable" 					"0" 
