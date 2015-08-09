@@ -243,8 +243,6 @@ function CMWGameMode:OnHeroPicked( event )
 		if ability_arrow then ability_arrow:UpgradeAbility(true) end
 		
 		pickedHero:SetAbilityPoints ( 0 )
-		pickedHero:SetGold(5000, true)
-		pickedHero:SetGold(5000, false)
 	end
 	
 end
