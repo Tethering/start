@@ -36,11 +36,21 @@ function Precache( context )
 
 	--Staff of Moon
 	PrecacheResource( "model", "models/heroes/drow/drow.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_bracers.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_cape.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_weapon.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_legs.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_quiver.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_shoulders.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_haircowl.vmdl", context )
 	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_projectile.vpcf", context )
 	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_manaburn.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
 	
-	
+	--Shield of Lick
+	PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction_ring.vpcf", context )
 
 	--arrows
 	--Common Arrow
@@ -68,8 +78,16 @@ function Precache( context )
 
 	--Vampirice Arrow
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
-	
 
+
+	
+	
+	--Chacing Arrow
+	--particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_fireworks.vpcf
+	
+	--particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf
+	--particles/units/heroes/hero_batrider/batrider_firefly.vpcf
+	--PrecacheResource("particle", "particles/units/heroes/hero_batrider/batrider_flamebreak.vpcf", context)
 
 
 	--[[Returns:void
@@ -162,11 +180,14 @@ function CMWGameMode:InitGameMode()
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetCustomVictoryMessageDuration( 10 )
 	GameRules:SetPreGameTime( 10 )
+	GameRules:SetHeroMinimapIconScale( 1.7 )
+	GameRules:SetGoldPerTick( 1 )
+	GameRules:SetGoldTickTime( 0.6 )
 	GameRules:SetSameHeroSelectionEnabled( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:SetHideKillMessageHeaders( true )
-	GameRules:SetUseUniversalShopMode( true )
+	GameRules:SetUseUniversalShopMode( false )
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath( false )
 	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
 	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled( true )

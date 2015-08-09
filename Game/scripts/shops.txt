@@ -13,6 +13,8 @@
 		"item"			"item_spectres_hood"
 		"item"			"item_bow_of_wind"
 		"item"			"item_guard_of_freeze"
+		"item"			"item_shield_of_luck"
+		"item"			"item_blood_bow"
 	}
 
 	"weapons_armor"
@@ -27,11 +29,7 @@
 			
 	"misc"
 	{
-		"item"			"item_earth_arrow"
-		"item"			"item_damnation_arrow"
-		"item"			"item_poison_arrow"
-		"item"			"item_vampire_arrow"
-		//"item"			"item_neutron_arrow"
+		
 	}	
 	
 	// Level 1 - Green Recipes
@@ -80,6 +78,11 @@
 	
 	"secretshop"
 	{							
-		
+		"item"			"item_earth_arrow"
+		"item"			"item_damnation_arrow"
+		"item"			"item_poison_arrow"
+		"item"			"item_vampire_arrow"
+		"item"			"item_triplex_arrow"
+		//"item"			"item_neutron_arrow"
 	}	
 }

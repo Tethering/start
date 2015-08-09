@@ -56,33 +56,40 @@ function neutron_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	
 		
 		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
+
+		if hTarget:FindModifierByName("modifier_shield_of_luck") then
+			if RandomInt(1, 100) <= hTarget:FindModifierByName("modifier_shield_of_luck"):GetAbility():GetSpecialValueFor("chance") then
+				ParticleManager:CreateParticle( "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", PATTACH_OVERHEAD_FOLLOW, hTarget )
+				return true
+			end
+		end
 	
 		--distance calculations
 		
 		local vDistance = vLocation - vMirana_Arrow_CasterPosition
 		local fDistance = vDistance:Length2D()
-		print (fDistance)
+		
 		
 		if fDistance > self.mirana_arrow_max_stunrange then
 			fDistance = self.mirana_arrow_max_stunrange
 		end
-		print (fDistance)
+		
 	
 	
 		--additional dmg & stun calculations
 		
 		local multiplier = fDistance / self.mirana_arrow_max_stunrange
 		multiplier = math.floor(multiplier * 10) / 10
-		print (multiplier)
+		
 		
 		local additionaldmg = math.floor(multiplier * self.mirana_arrow_bonus_damage)
-		print (additionaldmg)
+		
 		
 		local stunduration = multiplier * self.mirana_arrow_max_stun
 		if stunduration < self.mirana_arrow_min_stun then
 			stunduration = self.mirana_arrow_min_stun
 		end
-		print (stunduration)
+		
 	
 	
 		--damage applier

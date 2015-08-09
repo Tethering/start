@@ -67,7 +67,7 @@ function poison_arrow_lua:OnSpellStart()
 			local caster = self:GetCaster()
 			poison_tracer = CreateUnitByName("npc_dummy_blank", caster.poison_arrow_place_position, false, caster, caster, caster:GetTeam())
 			
-			poison_tracer:AddNewModifier( self:GetCaster(), self, "modifier_poison_arrow_tracer_lua", { duration = 5 } )
+			poison_tracer:AddNewModifier( self:GetCaster(), self, "modifier_poison_arrow_tracer_lua", { duration = self:GetSpecialValueFor( "tail_lifetime" ) } )
 
 			print("Poison created")
 			
@@ -86,6 +86,13 @@ function poison_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		
 		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
+
+		if hTarget:FindModifierByName("modifier_shield_of_luck") then
+			if RandomInt(1, 100) <= hTarget:FindModifierByName("modifier_shield_of_luck"):GetAbility():GetSpecialValueFor("chance") then
+				ParticleManager:CreateParticle( "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", PATTACH_OVERHEAD_FOLLOW, hTarget )
+				return true
+			end
+		end
 	
 		--distance calculations
 		

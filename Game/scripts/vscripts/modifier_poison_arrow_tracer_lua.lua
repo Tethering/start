@@ -33,7 +33,7 @@ function modifier_poison_arrow_tracer_lua:OnIntervalThink()
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil and ( not enemy:IsMagicImmune() ) and ( not enemy:IsInvulnerable() ) then
-				enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_poison_arrow_effect_lua", { duration = 5 } )
+				enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_poison_arrow_effect_lua", { duration = self:GetAbility():GetSpecialValueFor("effect_lifetime") } )
 			end
 		end
 	end
@@ -50,7 +50,6 @@ end
 function modifier_poison_arrow_tracer_lua:CheckState()
 	local state = {
 	[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-	[MODIFIER_STATE_INVISIBLE] = true,
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	[MODIFIER_STATE_UNSELECTABLE] = true,
 	[MODIFIER_STATE_INVULNERABLE] = true,

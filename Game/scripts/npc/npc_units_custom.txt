@@ -174,5 +174,23 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange" "1000" // Range of vision during day light.
 		"VisionNighttimeRange" "1000" // Range of vision at night time. 
+
+		// Creature Data
+        //----------------------------------------------------------------
+        "Creature"
+        {
+                "DisableClumpingBehavior"       "1"
+                "AttachWearables"
+                {
+                        "Wearable1" { "ItemDef" "75" }
+                        "Wearable2" { "ItemDef" "76" }
+                        "Wearable3" { "ItemDef" "77" }
+                        "Wearable4" { "ItemDef" "78" }
+                        "Wearable5" { "ItemDef" "79" }
+                        "Wearable6" { "ItemDef" "80" }
+                        "Wearable7" { "ItemDef" "267" }
+                }
+        }
+
 	}
 }

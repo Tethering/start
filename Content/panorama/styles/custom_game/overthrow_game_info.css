@@ -25,12 +25,20 @@ Label
 
 #TitleName
 {
-    color: #cccccc;
+    color: #3c9eff;
     font-size: 64px;
     margin-left: 16px;
     margin-top: 16px;
     text-transform: uppercase;
     vertical-align: center;
+}
+
+#Info
+{
+    color: #00B8D9;
+    font-size: 25px;
+    margin-left: 16px;
+    margin-top: 100px;
 }
 
 #BriefDescription
@@ -137,7 +145,7 @@ Label .midas_throne,
 Label .overboss,
 Label .treasure
 {
-    color: #cccccc;
+    color: #61c3ff;
     font-weight: bold;
 }
 

@@ -57,6 +57,13 @@ function damnation_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	
 		
 		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
+
+		if hTarget:FindModifierByName("modifier_shield_of_luck") then
+			if RandomInt(1, 100) <= hTarget:FindModifierByName("modifier_shield_of_luck"):GetAbility():GetSpecialValueFor("chance") then
+				ParticleManager:CreateParticle( "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", PATTACH_OVERHEAD_FOLLOW, hTarget )
+				return true
+			end
+		end
 		
 		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
 		ParticleManager:SetParticleControlEnt( nFXIndex, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, nil, self:GetCaster():GetOrigin(), false )

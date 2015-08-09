@@ -13,6 +13,10 @@
 			<Label id="TipText02" class="TipText" html="true" text="#overthrow_game_info_tip02" />
 			<Label id="TipText03" class="TipText" html="true" text="#overthrow_game_info_tip03" />
 		</Panel>
+
+		<Panel >
+			<Label id="Info" text="#infotext" />
+		</Panel>
 	</Panel>
 </root>
 
