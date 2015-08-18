@@ -127,6 +127,8 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("earth_arrow_lua")
 		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
@@ -146,6 +148,8 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("damnation_arrow_lua")
 		hero:FindAbilityByName("damnation_arrow_lua"):SetLevel(1)
@@ -165,6 +169,8 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("neutron_arrow_lua")
 		hero:FindAbilityByName("neutron_arrow_lua"):SetLevel(1)
@@ -184,6 +190,8 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("poison_arrow_lua")
 		hero:FindAbilityByName("poison_arrow_lua"):SetLevel(1)
@@ -203,6 +211,8 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("vampire_arrow_lua")
 		hero:FindAbilityByName("vampire_arrow_lua"):SetLevel(1)
@@ -222,9 +232,53 @@ function CMWGameMode:OnItemPurchased( event )
 		hero:RemoveAbility("poison_arrow_lua")
 		hero:RemoveAbility("vampire_arrow_lua")
 		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
 	
 		hero:AddAbility("triplex_arrow_lua")
 		hero:FindAbilityByName("triplex_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_fire_arrow" then 
+		if hero:FindAbilityByName("fire_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("fire_arrow_lua")
+		hero:FindAbilityByName("fire_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_hunters_arrow" then 
+		if hero:FindAbilityByName("hunters_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("hunters_arrow_lua")
+		hero:FindAbilityByName("hunters_arrow_lua"):SetLevel(1)
 	end
 end
 
@@ -243,6 +297,9 @@ function CMWGameMode:OnHeroPicked( event )
 		if ability_arrow then ability_arrow:UpgradeAbility(true) end
 		
 		pickedHero:SetAbilityPoints ( 0 )
+		pickedHero:SetGold(0, false)
+		pickedHero:SetGold(11110, true)
+
 	end
 	
 end
@@ -264,13 +321,13 @@ function CMWGameMode:OnGameRulesStateChange()
 		local numberOfPlayers = PlayerResource:GetPlayerCount()
 		if numberOfPlayers > 7 then
 			self.TEAM_KILLS_TO_WIN = 30
-			nCOUNTDOWNTIMER = 901
+			nCOUNTDOWNTIMER = 1081
 		elseif numberOfPlayers > 4 and numberOfPlayers <= 7 then
 			self.TEAM_KILLS_TO_WIN = 25
-			nCOUNTDOWNTIMER = 721
+			nCOUNTDOWNTIMER = 901
 		else
 			self.TEAM_KILLS_TO_WIN = 20
-			nCOUNTDOWNTIMER = 601
+			nCOUNTDOWNTIMER = 721
 			--self.TEAM_KILLS_TO_WIN = 10
 			--nCOUNTDOWNTIMER = 301
 		end
@@ -417,4 +474,12 @@ function CMWGameMode:SetRespawnTime( killedTeam, killedUnit )
 	else
 		killedUnit:SetTimeUntilRespawn(10)
 	end
+
+	RespawnPositions = {{-1536,4608,0},{-2304,2560,0},{-1280,1024,0},{437,903,0},{2816,-1280,0},{2816,2048,0},{2668,4608,0}}
+	local vec = killedUnit:GetForwardVector()
+	rand = RandomInt(1, 7)
+	vec.x = RespawnPositions[rand][1]
+	vec.y = RespawnPositions[rand][2]
+	vec.z = 0
+	killedUnit:SetRespawnPosition(vec)
 end

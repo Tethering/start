@@ -13,7 +13,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"item_cyclone"
+		"AbilityTextureName"			"item_staff_of_wizard"
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
 		"ItemPurchasable" "1"
@@ -75,7 +75,7 @@
 		"ID"							"2002" // "147" - dota original ID
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"item_manta"
+		"AbilityTextureName"			"item_axe_of_illusion"
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
 		"ItemPurchasable" "1"
@@ -206,7 +206,7 @@
 		"BaseClass"						"item_datadriven"	
 		"ID"							"2003" // 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityTextureName"			"item_buckler"
+		"AbilityTextureName"			"item_shield_of_protection"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -320,7 +320,7 @@
 		"BaseClass"						"item_datadriven"	
 		"ID"							"2004" // 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityTextureName"			"item_ancient_janggo"
+		"AbilityTextureName"			"item_drums"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -432,11 +432,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"item_datadriven"	
 		"ID"							"2005" // 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"item_mekansm"
+		"AbilityTextureName"			"item_healing_artifact"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -501,7 +500,7 @@
 		"BaseClass"						"item_datadriven"	
 		"ID"							"2007" // 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"item_mystic_staff"
+		"AbilityTextureName"			"item_staff_of_moon"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -531,6 +530,93 @@
 	}
 
 	//=================================================================================================================
+	// Protective Wall
+	//=================================================================================================================
+	"item_protective_wall"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	
+		"ID"							"2008" // 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"item_protective_wall"
+		
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"25"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"
+		"ItemQuality"					"secret_shop"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"7.0"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"50"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Dark_Seer.Wall_of_Replica_Start"
+				"Target" 		"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_protective_wall.lua"
+				"Function"				"item_protective_wall_on_spell_start"
+				"Target"				"POINT"
+				"wall_particle"			"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+				"dummy_modifier"		"modifier_protective_wall_dummy_datadriven"
+				"dummy_sound"			"Hero_Dark_Seer.Wall_of_Replica_lp"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_protective_wall_dummy_datadriven"
+			{
+				"IsHidden"		"1"
+				"IsPurgable"	"0"
+	
+				"States"
+				{
+					//"MODIFIER_STATE_INVULNERABLE" 	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_NO_HEALTH_BAR" 	"MODIFIER_STATE_VALUE_ENABLED"				
+					//"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_UNSELECTABLE" 	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
 	// Health Stone / Vitality Booster
 	//=================================================================================================================
 	"item_health_stone"
@@ -540,7 +626,7 @@
 		"BaseClass"						"item_vitality_booster"	
 		"ID"							"1101" // "61"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_vitality_booster"
+		"AbilityTextureName"			"item_health_stone"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -577,7 +663,7 @@
 		"BaseClass"						"item_lifesteal"	
 		"ID"							"1102" // "26"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_helm_of_the_dominator"
+		"AbilityTextureName"			"item_mask_of_anabolism"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -614,7 +700,7 @@
 		"BaseClass"						"item_talisman_of_evasion"	
 		"ID"							"1103" // "26"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_talisman_of_evasion"
+		"AbilityTextureName"			"item_dodge_talisman"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -651,7 +737,7 @@
 		"BaseClass"						"item_hood_of_defiance"	
 		"ID"							"1104" // "26"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_hood_of_defiance"
+		"AbilityTextureName"			"item_spectres_hood"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -702,7 +788,7 @@
 		"BaseClass"						"item_gloves"	
 		"ID"							"1105" // "25"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_eagle"
+		"AbilityTextureName"			"item_bow_of_wind"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -739,7 +825,7 @@
 		"BaseClass"						"item_datadriven"	
 		"ID"							"1106" // 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityTextureName"			"item_shivas_guard"
+		"AbilityTextureName"			"item_guard_of_freeze"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -817,7 +903,7 @@
 		"BaseClass"						"item_datadriven"	
 		"ID"							"1107" // 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"item_poor_mans_shield"
+		"AbilityTextureName"			"item_shield_of_luck"
 		
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -865,6 +951,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
 		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"item_blood_bow"
 
 		"ItemKillable" "0" 
 		"ItemSellable" "1"
@@ -912,7 +999,7 @@
 	{
 		"ID"							"1201"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName" 			"item_javelin"
+		"AbilityTextureName" 			"item_earth_arrow"
 		
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"0" 
@@ -937,7 +1024,7 @@
 	{
 		"ID"							"1202"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName" 			"item_desolator"
+		"AbilityTextureName" 			"item_damnation_arrow"
 		
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"0" 
@@ -987,7 +1074,7 @@
 	{
 		"ID"							"1204"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName" 			"item_orb_of_venom"
+		"AbilityTextureName" 			"item_poison_arrow"
 		
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"0" 
@@ -1012,7 +1099,7 @@
 	{
 		"ID"							"1205"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName" 			"item_satanic"
+		"AbilityTextureName" 			"item_vampire_arrow"
 		
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"0" 
@@ -1037,7 +1124,57 @@
 	{
 		"ID"							"1206"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName" 			"item_sange_and_yasha"
+		"AbilityTextureName" 			"item_triplex_arrow"
+		
+		"ItemCost" 						"1000"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+
+		"SecretShop"				 	"1"
+	}
+
+	//=================================================================================================================
+	// Fire Arrow
+	//=================================================================================================================
+	"item_fire_arrow"
+	{
+		"ID"							"1207"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_fire_arrow"
+		
+		"ItemCost" 						"1000"
+		"ItemKillable" 					"0" 
+		"ItemSellable" 					"0"
+		"ItemPurchasable" 				"1"
+		"ItemDroppable" 				"0"
+		
+		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 			"1" //The active ability needs charges to be used - Urn
+		
+		"ItemPermanent" 				"0"
+		"ItemCastOnPickup" 				"1"
+
+		"SecretShop"				 	"1"
+	}
+
+	//=================================================================================================================
+	// Hunter's Arrow
+	//=================================================================================================================
+	"item_hunters_arrow"
+	{
+		"ID"							"1208"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName" 			"item_hunters_arrow"
 		
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"0" 

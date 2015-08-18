@@ -20,7 +20,6 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_poison_arrow_tracer_lua:OnCreated( kv )
-	print (kv)
 	self:StartIntervalThink( 0.1 )
 end
 
@@ -53,6 +52,7 @@ function modifier_poison_arrow_tracer_lua:CheckState()
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	[MODIFIER_STATE_UNSELECTABLE] = true,
 	[MODIFIER_STATE_INVULNERABLE] = true,
+	[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
 	}
 
 	return state

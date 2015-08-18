@@ -30,11 +30,18 @@ function modifier_poison_arrow_effect_lua:OnCreated()
 	self:StartIntervalThink( 0.01 )
 end
 
+
 function modifier_poison_arrow_effect_lua:OnIntervalThink()
+
+	local dmg = self:GetAbility():GetSpecialValueFor("poison_damage")
+	if self:GetParent():GetHealth() <= self:GetAbility():GetSpecialValueFor("poison_damage") then
+		dmg = self:GetParent():GetHealth() - 1
+	end
+
 	local damage = {
 		victim = self:GetParent(),
 		attacker = self:GetAbility():GetCaster(),
-		damage = self:GetAbility():GetSpecialValueFor("poison_damage"),
+		damage = dmg,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self:GetAbility()
 	}

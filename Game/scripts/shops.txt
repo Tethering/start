@@ -25,6 +25,7 @@
 		"item"			"item_staff_of_wizard"
 		"item"			"item_axe_of_illusion"
 		"item"			"item_staff_of_moon"
+		"item"			"item_protective_wall"
 	}
 			
 	"misc"
@@ -83,6 +84,8 @@
 		"item"			"item_poison_arrow"
 		"item"			"item_vampire_arrow"
 		"item"			"item_triplex_arrow"
+		"item"			"item_fire_arrow"
+		"item"			"item_hunters_arrow"
 		//"item"			"item_neutron_arrow"
 	}	
 }

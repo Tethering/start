@@ -76,7 +76,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -104,7 +104,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityTextureName"			"brewmaster_thunder_clap"
+		"AbilityTextureName"			"earth_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
 		"ScriptFile"					"earth_arrow_lua"
@@ -164,7 +164,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -207,7 +207,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityTextureName"			"queenofpain_shadow_strike"
+		"AbilityTextureName"			"damnation_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
 		"ScriptFile"					"damnation_arrow_lua"
@@ -268,7 +268,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -307,7 +307,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityTextureName"			"viper_poison_attack"
+		"AbilityTextureName"			"poison_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
 		"ScriptFile"					"poison_arrow_lua"
@@ -368,7 +368,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -415,7 +415,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityTextureName"			"warlock_shadow_word"
+		"AbilityTextureName"			"vampire_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
 		"ScriptFile"					"vampire_arrow_lua"
@@ -476,7 +476,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -513,7 +513,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityTextureName"			"medusa_split_shot"
+		"AbilityTextureName"			"triplex_arrow"
 		"FightRecapLevel"				"1"
 		"MaxLevel"             			"1"
 		"ScriptFile"					"triplex_arrow_lua"
@@ -574,7 +574,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrow_bonus_damage"	"140"
+				"arrow_bonus_damage"	"100"
 			}
 			"08"
 			{
@@ -585,6 +585,212 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"arrow_damage"		"100"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Fire Arrow
+	//=================================================================================================================
+	"fire_arrow_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"fire_arrow"
+		"FightRecapLevel"				"1"
+		"MaxLevel"             			"1"
+		"ScriptFile"					"fire_arrow_lua"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+		"AbilityDuration"				"3.11"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_speed"		"857.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_width"		"115"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_range"		"3000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_max_stunrange"	"1500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_min_stun"	"0.01"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_max_stun"	"5.0"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_bonus_damage"	"100"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_vision"		"650"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_damage"		"100"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_radius"		"600"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_damage"		"100"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_speed"		"1000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Hunter's Arrow
+	//=================================================================================================================
+	"hunters_arrow_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"hunters_arrow"
+		"FightRecapLevel"				"1"
+		"MaxLevel"             			"1"
+		"ScriptFile"					"hunters_arrow_lua"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+		"AbilityDuration"				"3.11"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_speed"		"857.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_width"		"115"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_range"		"3000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_max_stunrange"	"1500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_min_stun"	"0.01"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"arrow_max_stun"	"5.0"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_bonus_damage"	"100"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_vision"		"650"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"arrow_damage"		"100"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_multiplier"	"2"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_max_multiplier"	"3"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"effect_duration"	"25"
 			}
 		}
 	}

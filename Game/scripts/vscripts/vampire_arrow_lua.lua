@@ -40,10 +40,12 @@ function vampire_arrow_lua:OnSpellStart()
 		bHasFrontalCone = false,
 		bProvidesVision = true,
 		iVisionRadius = self.mirana_arrow_vision,
-		iVisionTeamNumber = self:GetCaster():GetTeamNumber()
+		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 	}
 	
 	ProjectileManager:CreateLinearProjectile( info )
+
+
 end
 
 
@@ -82,9 +84,6 @@ function vampire_arrow_lua:OnProjectileHit( hTarget, vLocation )
 		if stunduration < self.mirana_arrow_min_stun then
 			stunduration = self.mirana_arrow_min_stun
 		end
-	
-	
-	
 	
 		local damage = {
 			victim = hTarget,

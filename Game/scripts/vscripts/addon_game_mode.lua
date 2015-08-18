@@ -52,6 +52,12 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction_ring.vpcf", context )
 
+	--Protective Wall
+	PrecacheResource( "particle", "particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context )
+
+
+	
 	--arrows
 	--Common Arrow
 	PrecacheResource( "particle", "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", context )
@@ -70,17 +76,21 @@ function Precache( context )
 	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context) 
 	--PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
 
-
 	--Poison Arrow
 	PrecacheResource("particle", "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf", context)
 
-
-	--Vampirice Arrow
+	--Vampire Arrow
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 
+	--Fire Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf", context)
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
 
-	
+	--Hunter's Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_guardian_explosion.vpcf", context)
 	
 	--Chacing Arrow
 	--particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_fireworks.vpcf
