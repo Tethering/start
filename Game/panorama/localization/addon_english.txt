@@ -51,9 +51,9 @@
 	"KillMessageBounty"								"FOR 500 BONUS GOLD!"
 	
 	"addonname"										"Mirana Wars Reborn Beta"
-	"overthrow_game_info_tip01"						"<span class='midas_throne'>8 - 10 Players:</span> 30 kills or 18 minutes."
-	"overthrow_game_info_tip02"						"<span class='midas_throne'>5 - 7 Players:</span> 25 kills or 15 minutes."
-	"overthrow_game_info_tip03"						"<span class='midas_throne'>Less than 5 Players:</span> 20 kills or 12 minutes."
+	"overthrow_game_info_tip01"						"<span class='midas_throne'>8 - 10 Players:</span> 30 kills or 25 minutes."
+	"overthrow_game_info_tip02"						"<span class='midas_throne'>5 - 7 Players:</span> 25 kills or 21 minutes."
+	"overthrow_game_info_tip03"						"<span class='midas_throne'>Less than 5 Players:</span> 20 kills or 18 minutes."
 	
 	"infotext"										"If you met some bug, want to help me improve this map or just want to leave your thoughts about the game, then please comment on the workshop.\nDont forget to vote after game. It's very importatont for me to know if you liked this custom map.\n\nThank You & Good Luck!"
 }

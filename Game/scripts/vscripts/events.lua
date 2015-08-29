@@ -298,7 +298,7 @@ function CMWGameMode:OnHeroPicked( event )
 		
 		pickedHero:SetAbilityPoints ( 0 )
 		pickedHero:SetGold(0, false)
-		pickedHero:SetGold(11110, true)
+		pickedHero:SetGold(0, true)
 
 	end
 	
@@ -321,13 +321,13 @@ function CMWGameMode:OnGameRulesStateChange()
 		local numberOfPlayers = PlayerResource:GetPlayerCount()
 		if numberOfPlayers > 7 then
 			self.TEAM_KILLS_TO_WIN = 30
-			nCOUNTDOWNTIMER = 1081
+			nCOUNTDOWNTIMER = 1501
 		elseif numberOfPlayers > 4 and numberOfPlayers <= 7 then
 			self.TEAM_KILLS_TO_WIN = 25
-			nCOUNTDOWNTIMER = 901
+			nCOUNTDOWNTIMER = 1261
 		else
 			self.TEAM_KILLS_TO_WIN = 20
-			nCOUNTDOWNTIMER = 721
+			nCOUNTDOWNTIMER = 1081
 			--self.TEAM_KILLS_TO_WIN = 10
 			--nCOUNTDOWNTIMER = 301
 		end
