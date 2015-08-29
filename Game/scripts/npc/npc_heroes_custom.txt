@@ -22,9 +22,9 @@
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
-		"Ability1"					"standart_arrow"				// Ability 1
-		"Ability2"					"standart_leap"					//
-		"Ability3"					""								// 
+		"Ability1"					"common_arrow_lua"				//
+		"Ability2"					"common_leap"					//
+		"Ability3"					"Invulnerable"								// 
 		"Ability4"					""								// 
 		
 		// Attack
@@ -44,7 +44,7 @@
 		
 		"StatusHealth"              "600"      						// Base health.
 		"StatusHealthRegen"         "0"        						// Health regeneration rate.
-		"StatusMana"                "0"        						// Base mana.
+		"StatusMana"                "2"        						// Base mana.
 		"StatusManaRegen"           "0"        						// Mana regeneration rate.
 	}
 }

@@ -1,4 +1,9 @@
 "AddonInfo"
 {
-
+	maps			"foretime_forest"
+	"IsPlayable"	"1"
+	"foretime_forest"
+	{
+					"MaxPlayers"                    "10"
+	}
 }

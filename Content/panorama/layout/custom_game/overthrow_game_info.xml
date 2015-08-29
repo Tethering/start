@@ -9,9 +9,13 @@
 		</Panel>
 		
 		<Panel id="TipsRow" class="InfoRow">
-			<Label id="TipText01" class="TipText" html="true" text="8 - 10 Players: 30 kills or 15 minutes." />
-			<Label id="TipText02" class="TipText" html="true" text="5 - 7 Players: 25 kills or 12 minutes." />
-			<Label id="TipText03" class="TipText" html="true" text="Less than 5 Players: 20 kills or 10 minutes." />
+			<Label id="TipText01" class="TipText" html="true" text="#overthrow_game_info_tip01" />
+			<Label id="TipText02" class="TipText" html="true" text="#overthrow_game_info_tip02" />
+			<Label id="TipText03" class="TipText" html="true" text="#overthrow_game_info_tip03" />
+		</Panel>
+
+		<Panel >
+			<Label id="Info" text="#infotext" />
 		</Panel>
 	</Panel>
 </root>

@@ -1,5 +1,4 @@
 "CustomHeroList" 
 {
 		"npc_dota_hero_mirana"				"-1"
-
 }

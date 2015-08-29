@@ -1,0 +1,91 @@
+"dota_shops"
+{
+	"consumables"
+	{
+	
+	}
+
+	"attributes"
+	{
+		"item"			"item_health_stone"
+		"item"			"item_mask_of_anabolism"
+		"item"			"item_dodge_talisman"
+		"item"			"item_spectres_hood"
+		"item"			"item_bow_of_wind"
+		"item"			"item_guard_of_freeze"
+		"item"			"item_shield_of_luck"
+		"item"			"item_blood_bow"
+	}
+
+	"weapons_armor"
+	{
+		"item"			"item_shield_of_protection"
+		"item"			"item_drums"
+		"item"			"item_healing_artifact"
+		"item"			"item_staff_of_wizard"
+		"item"			"item_axe_of_illusion"
+		"item"			"item_staff_of_moon"
+		"item"			"item_protective_wall"
+	}
+			
+	"misc"
+	{
+		
+	}	
+	
+	// Level 1 - Green Recipes
+	"basics"
+	{
+				
+	}
+
+	// Level 2 - Blue Recipes
+	"support"
+	{
+			
+	}
+				
+	"magics"			
+	{
+		
+	}
+		
+	// Level 3 - Purple Recipes	
+	"defense"
+	{
+		
+	}
+			
+	"weapons"
+	{
+					
+					
+	}
+		
+	// Level 4 - Orange / Orb / Artifacts				
+	"artifacts"
+	{	
+	
+	}
+
+	"sideshop1"
+	{
+	}
+
+	"sideshop2"
+	{
+		
+	}
+	
+	"secretshop"
+	{							
+		"item"			"item_earth_arrow"
+		"item"			"item_damnation_arrow"
+		"item"			"item_poison_arrow"
+		"item"			"item_vampire_arrow"
+		"item"			"item_triplex_arrow"
+		"item"			"item_fire_arrow"
+		"item"			"item_hunters_arrow"
+		//"item"			"item_neutron_arrow"
+	}	
+}

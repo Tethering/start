@@ -1,22 +1,307 @@
 --[[ events.lua ]]
 
+--a function that finds an item on a unit by name
+function findItemOnUnit( unit, itemname, searchStash )
+    --check if the unit has the item at all
+    if not unit:HasItemInInventory( itemname ) then
+        return nil
+    end
+    
+    --set a search range depending on if we want to search the stach or not
+    local lastSlot = 5
+    if searchStash then
+        lastSlot = 11
+    end
+    
+    --go past all slots to see if the item is there
+    for slot= 0, lastSlot, 1 do
+        local item = unit:GetItemInSlot( slot )
+        if item:GetAbilityName() == itemname then
+            return item
+        end
+    end
+    
+    --if the item is not found, return nil (happens if the item is in stash and you are not looking in stash)
+    return nil
+end
+
+--a function that finds an item on a unit by name
+function countItemOnUnit( unit, itemname, searchStash )
+	local count = 0
+    --check if the unit has the item at all
+    if not unit:HasItemInInventory( itemname ) then
+        return count
+    end
+    
+    --set a search range depending on if we want to search the stach or not
+    local lastSlot = 5
+    if searchStash then
+        lastSlot = 11
+    end
+    
+    --go past all slots to see if the item is there
+    for slot= 0, lastSlot, 1 do
+        local item = unit:GetItemInSlot( slot )
+        if item:GetAbilityName() == itemname then
+            count = count + 1
+        end
+    end
+    
+    --if the item is not found, return nil (happens if the item is in stash and you are not looking in stash)
+    return count
+end
+
+--a function that finds an item on a unit by name
+function countAllItemsOnUnit( unit, searchStash )
+	local count = 0
+    --check if the unit has the item at all
+    
+    --set a search range depending on if we want to search the stach or not
+    local lastSlot = 5
+    if searchStash then
+        lastSlot = 11
+    end
+    
+    --go past all slots to see if the item is there
+    for slot= 0, lastSlot, 1 do
+        if unit:GetItemInSlot( slot ) then
+            count = count + 1
+        end
+    end
+    
+    --if the item is not found, return nil (happens if the item is in stash and you are not looking in stash)
+    return count
+end
+
+--------------------------------------------------------------------------------
+-- Event: OnItemPurchased
+--------------------------------------------------------------------------------
+function CMWGameMode:OnItemPurchased( event )
+
+	local ability_name = event.itemname
+	local hero = PlayerResource:GetPlayer(event.PlayerID):GetAssignedHero()
+	
+	--------------------------------------------------
+	--Regular Items
+	--------------------------------------------------
+
+	if countAllItemsOnUnit(hero, true) == 7 then
+		hero:SellItem(hero:GetItemInSlot(6))
+	end
+
+	--[[if ability_name == "item_shield_of_luck" then
+		if countItemOnUnit(hero, "item_shield_of_luck", false) > 1 then
+			hItem = findItemOnUnit(hero, ability_name, false)
+			hero:RemoveItem(hItem)
+			hero:SetGold((hero:GetGold() + event.itemcost), true)
+			hero:SetGold(0, false)
+			return
+		end
+	end
+
+	if ability_name == "item_blood_bow" then
+		if countItemOnUnit(hero, "item_blood_bow", false) > 1 then
+			hItem = findItemOnUnit(hero, ability_name, false)
+			hero:RemoveItem(hItem)
+			hero:SetGold((hero:GetGold() + event.itemcost), true)
+			hero:SetGold(0, false)
+			return
+		end
+	end]]
+
+	--------------------------------------------------
+	--Arrows
+	--------------------------------------------------
+
+	if ability_name == "item_earth_arrow" then 
+		if hero:FindAbilityByName("earth_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("earth_arrow_lua")
+		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_damnation_arrow" then 
+		if hero:FindAbilityByName("damnation_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("damnation_arrow_lua")
+		hero:FindAbilityByName("damnation_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_neutron_arrow" then 
+		if hero:FindAbilityByName("neutron_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("neutron_arrow_lua")
+		hero:FindAbilityByName("neutron_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_poison_arrow" then 
+		if hero:FindAbilityByName("poison_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("poison_arrow_lua")
+		hero:FindAbilityByName("poison_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_vampire_arrow" then 
+		if hero:FindAbilityByName("vampire_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("vampire_arrow_lua")
+		hero:FindAbilityByName("vampire_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_triplex_arrow" then 
+		if hero:FindAbilityByName("triplex_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("triplex_arrow_lua")
+		hero:FindAbilityByName("triplex_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_fire_arrow" then 
+		if hero:FindAbilityByName("fire_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("fire_arrow_lua")
+		hero:FindAbilityByName("fire_arrow_lua"):SetLevel(1)
+	end
+
+	if ability_name == "item_hunters_arrow" then 
+		if hero:FindAbilityByName("hunters_arrow_lua") then
+			hero:SetGold((hero:GetGold() + 100), true)
+			hero:SetGold(0, false)
+			return
+		end
+		
+		hero:RemoveAbility("common_arrow_lua")
+		hero:RemoveAbility("earth_arrow_lua")
+		hero:RemoveAbility("damnation_arrow_lua")
+		hero:RemoveAbility("neutron_arrow_lua")
+		hero:RemoveAbility("poison_arrow_lua")
+		hero:RemoveAbility("vampire_arrow_lua")
+		hero:RemoveAbility("triplex_arrow_lua")
+		hero:RemoveAbility("fire_arrow_lua")
+		hero:RemoveAbility("hunters_arrow_lua")
+	
+		hero:AddAbility("hunters_arrow_lua")
+		hero:FindAbilityByName("hunters_arrow_lua"):SetLevel(1)
+	end
+end
+
 
 --------------------------------------------------------------------------------
 -- Event: OnHeroPicked
 --------------------------------------------------------------------------------
 function CMWGameMode:OnHeroPicked( event )
-	print("CMWGameMode:OnHeroPicked( event )")
 	
 	local pickedHero = EntIndexToHScript( event.heroindex )
 	if pickedHero:IsRealHero() then
-		local ability_leap = pickedHero:FindAbilityByName("standart_leap")
-		ability_leap:UpgradeAbility(true)
+		local ability_leap = pickedHero:FindAbilityByName("common_leap")
+		if ability_leap then ability_leap:UpgradeAbility(true) end
 		
-		local ability_arrow = pickedHero:FindAbilityByName("standart_arrow")
+		local ability_arrow = pickedHero:FindAbilityByName("common_arrow_lua")
 		if ability_arrow then ability_arrow:UpgradeAbility(true) end
 		
 		pickedHero:SetAbilityPoints ( 0 )
+		pickedHero:SetGold(0, false)
+		pickedHero:SetGold(0, true)
+
 	end
+	
 end
 
 
@@ -24,7 +309,6 @@ end
 -- Event: Game state change handler
 ---------------------------------------------------------------------------
 function CMWGameMode:OnGameRulesStateChange()
-	print("CMWGameMode:OnGameRulesStateChange()")
 	
 	local nNewState = GameRules:State_Get()
 	--print( "OnGameRulesStateChange: " .. nNewState )
@@ -37,15 +321,15 @@ function CMWGameMode:OnGameRulesStateChange()
 		local numberOfPlayers = PlayerResource:GetPlayerCount()
 		if numberOfPlayers > 7 then
 			self.TEAM_KILLS_TO_WIN = 30
-			nCOUNTDOWNTIMER = 901
+			nCOUNTDOWNTIMER = 1501
 		elseif numberOfPlayers > 4 and numberOfPlayers <= 7 then
 			self.TEAM_KILLS_TO_WIN = 25
-			nCOUNTDOWNTIMER = 721
+			nCOUNTDOWNTIMER = 1261
 		else
-			--self.TEAM_KILLS_TO_WIN = 20
-			--nCOUNTDOWNTIMER = 601
-			self.TEAM_KILLS_TO_WIN = 10
-			nCOUNTDOWNTIMER = 301
+			self.TEAM_KILLS_TO_WIN = 20
+			nCOUNTDOWNTIMER = 1081
+			--self.TEAM_KILLS_TO_WIN = 10
+			--nCOUNTDOWNTIMER = 301
 		end
 		--print( "Kills to win = " .. tostring(self.TEAM_KILLS_TO_WIN) )
 
@@ -66,7 +350,6 @@ end
 -- Event: OnNPCSpawned
 --------------------------------------------------------------------------------
 function CMWGameMode:OnNPCSpawned( event )
-	print("CMWGameMode:OnNPCSpawned( event )")
 	
 	local spawnedUnit = EntIndexToHScript( event.entindex )
 	if spawnedUnit:IsRealHero() then
@@ -94,7 +377,6 @@ end
 -- Event: OnTeamKillCredit, see if anyone won
 ---------------------------------------------------------------------------
 function CMWGameMode:OnTeamKillCredit( event )
-	print("CMWGameMode:OnTeamKillCredit( event )")
 	
 --	print( "OnKillCredit" )
 --	DeepPrint( event )
@@ -134,7 +416,6 @@ end
 -- Event: OnEntityKilled
 ---------------------------------------------------------------------------
 function CMWGameMode:OnEntityKilled( event )
-	print("CMWGameMode:OnEntityKilled( event )")
 	
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
@@ -186,7 +467,6 @@ function CMWGameMode:OnEntityKilled( event )
 end
 
 function CMWGameMode:SetRespawnTime( killedTeam, killedUnit )
-	print("CMWGameMode:SetRespawnTime( killedTeam, killedUnit )")
 	
 	--print("Setting time for respawn")
 	if killedTeam == self.leadingTeam and self.isGameTied == false then
@@ -194,4 +474,12 @@ function CMWGameMode:SetRespawnTime( killedTeam, killedUnit )
 	else
 		killedUnit:SetTimeUntilRespawn(10)
 	end
+
+	RespawnPositions = {{-1536,4608,0},{-2304,2560,0},{-1280,1024,0},{437,903,0},{2816,-1280,0},{2816,2048,0},{2668,4608,0}}
+	local vec = killedUnit:GetForwardVector()
+	rand = RandomInt(1, 7)
+	vec.x = RespawnPositions[rand][1]
+	vec.y = RespawnPositions[rand][2]
+	vec.z = 0
+	killedUnit:SetRespawnPosition(vec)
 end

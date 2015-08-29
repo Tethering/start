@@ -18,8 +18,91 @@ require( "utility_functions" )
 -- Precache
 ---------------------------------------------------------------------------
 function Precache( context )
-	print("Precache( context )")
 
+	--items
+	--Skull of Freeze
+	PrecacheResource( "particle", "particles/items_fx/aura_shivas.vpcf", context )
+
+	--Shield of Protection
+	PrecacheResource( "particle", "particles/items_fx/aura_assault.vpcf", context )
+	PrecacheResource( "particle", "particles/items_fx/buckler.vpcf", context )
+
+	--Drums
+	PrecacheResource( "particle", "particles/items_fx/aura_endurance.vpcf", context )
+	PrecacheResource( "particle", "particles/items_fx/drum_of_endurance_buff.vpcf", context )
+
+	--Healing Artifact
+	PrecacheResource( "particle", "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", context )
+
+	--Staff of Moon
+	PrecacheResource( "model", "models/heroes/drow/drow.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_bracers.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_cape.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_weapon.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_legs.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_quiver.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_shoulders.vmdl", context )
+	PrecacheResource( "model", "models/heroes/drow/drow_haircowl.vmdl", context )
+	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_projectile.vpcf", context )
+	PrecacheResource( "particle", "particles/items2_fx/necronomicon_archer_manaburn.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
+	
+	--Shield of Lick
+	PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction_ring.vpcf", context )
+
+	--Protective Wall
+	PrecacheResource( "particle", "particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context )
+
+
+	
+	--arrows
+	--Common Arrow
+	PrecacheResource( "particle", "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context )
+
+	--Earth Arrow
+	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", context )
+	PrecacheResource( "particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
+
+	--Damnation Arrow
+	PrecacheResource("particle", "particles/items2_fx/medallion_of_courage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", context) 
+	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", context) 
+	--PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context) 
+	--PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+
+	--Poison Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf", context)
+
+	--Vampire Arrow
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+
+	--Fire Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf", context)
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
+
+	--Hunter's Arrow
+	PrecacheResource("particle", "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_guardian_explosion.vpcf", context)
+	
+	--Chacing Arrow
+	--particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_fireworks.vpcf
+	
+	--particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf
+	--particles/units/heroes/hero_batrider/batrider_firefly.vpcf
+	--PrecacheResource("particle", "particles/units/heroes/hero_batrider/batrider_flamebreak.vpcf", context)
+
+
+	--[[Returns:void
+	Manually precache a single resource
+	]]
 	--[[
 		Precache things we know we'll use.  Possible file types include (but not limited to):
 			PrecacheResource( "model", "*.vmdl", context )
@@ -107,12 +190,21 @@ function CMWGameMode:InitGameMode()
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetCustomVictoryMessageDuration( 10 )
 	GameRules:SetPreGameTime( 10 )
+	GameRules:SetHeroMinimapIconScale( 1.7 )
+	GameRules:SetGoldPerTick( 1 )
+	GameRules:SetGoldTickTime( 0.6 )
+	GameRules:SetSameHeroSelectionEnabled( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:SetHideKillMessageHeaders( true )
-	GameRules:SetUseUniversalShopMode( true )
+	GameRules:SetUseUniversalShopMode( false )
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath( false )
 	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
+	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled( true )
+	GameRules:GetGameModeEntity():SetStashPurchasingDisabled( true )
+	--GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( false )
+	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
+	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 1 )
 	
 	----------------------------------------------------
 	--Couple of Listeners
@@ -122,6 +214,7 @@ function CMWGameMode:InitGameMode()
 	ListenToGameEvent( "dota_team_kill_credit", Dynamic_Wrap( CMWGameMode, 'OnTeamKillCredit' ), self )
 	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CMWGameMode, 'OnEntityKilled' ), self )
 	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CMWGameMode, 'OnHeroPicked' ), self )
+	ListenToGameEvent( "dota_item_purchased", Dynamic_Wrap( CMWGameMode, 'OnItemPurchased' ), self )
 	
 	
 	Convars:RegisterCommand( "overthrow_set_timer", function(...) return SetTimer( ... ) end, "Set the timer.", FCVAR_CHEAT )
