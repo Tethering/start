@@ -56,8 +56,16 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf", context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context )
 
+	--Owls & Timber's Axe
+	PrecacheResource( "model", "models/props_wildlife/wildlife_birdsmall001.vmdl", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf", context )
+	PrecacheResource( "particle", "particles/items_fx/healing_tango.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf", context )
+	
+
 
 	
+
 	--arrows
 	--Common Arrow
 	PrecacheResource( "particle", "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", context )
@@ -160,6 +168,7 @@ function CMWGameMode:InitGameMode()
 	self.m_VictoryMessages[DOTA_TEAM_CUSTOM_6] = "#VictoryMessage_Custom6"
 	self.m_VictoryMessages[DOTA_TEAM_CUSTOM_7] = "#VictoryMessage_Custom7"
 	self.m_VictoryMessages[DOTA_TEAM_CUSTOM_8] = "#VictoryMessage_Custom8"
+
 	
 	
 	self.m_GatheredShuffledTeams = {}
@@ -189,7 +198,7 @@ function CMWGameMode:InitGameMode()
 	
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetCustomVictoryMessageDuration( 10 )
-	GameRules:SetPreGameTime( 10 )
+	GameRules:SetPreGameTime( 3 )
 	GameRules:SetHeroMinimapIconScale( 1.7 )
 	GameRules:SetGoldPerTick( 1 )
 	GameRules:SetGoldTickTime( 0.6 )
@@ -205,7 +214,20 @@ function CMWGameMode:InitGameMode()
 	--GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( false )
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
 	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 1 )
+	GameRules:SetHeroSelectionTime( 10 )
 	
+
+	----------------------------------------------------
+	--Runes
+
+	GameRules:GetGameModeEntity():SetRuneEnabled( 0, false ) --Double Damage
+	GameRules:GetGameModeEntity():SetRuneEnabled( 1, false ) --Haste
+	GameRules:GetGameModeEntity():SetRuneEnabled( 2, false ) --Illusion
+	GameRules:GetGameModeEntity():SetRuneEnabled( 3, false ) --Invis
+	GameRules:GetGameModeEntity():SetRuneEnabled( 4, false ) --Regen
+	GameRules:GetGameModeEntity():SetRuneEnabled( 5, false ) --Bounty
+	GameRules:GetGameModeEntity():SetThink( "RunesActivation", self, 31 )
+
 	----------------------------------------------------
 	--Couple of Listeners
 	
@@ -215,6 +237,12 @@ function CMWGameMode:InitGameMode()
 	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CMWGameMode, 'OnEntityKilled' ), self )
 	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CMWGameMode, 'OnHeroPicked' ), self )
 	ListenToGameEvent( "dota_item_purchased", Dynamic_Wrap( CMWGameMode, 'OnItemPurchased' ), self )
+
+	----------------------------------------------------
+	--Antileaver sistem
+	----------------------------------------------------
+	--[[ListenToGameEvent( "player_team", Dynamic_Wrap( CMWGameMode, 'OnPlayerTeam' ), self )
+	ListenToGameEvent( "player_reconnected", Dynamic_Wrap( CMWGameMode, 'OnPlayerReconnceted' ), self )]]
 	
 	
 	Convars:RegisterCommand( "overthrow_set_timer", function(...) return SetTimer( ... ) end, "Set the timer.", FCVAR_CHEAT )
@@ -228,17 +256,36 @@ function CMWGameMode:InitGameMode()
 	
 	
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 ) 
-	
+	--GameRules:GetGameModeEntity():SetThink("HPIncreaser", self)
 	--GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 end
 
 
+---------------------------------------------------------------------------
+-- RunesActivation
+---------------------------------------------------------------------------
+function CMWGameMode:RunesActivation( )
+	GameRules:GetGameModeEntity():SetRuneEnabled( 0, true ) --Double Damage
+	GameRules:GetGameModeEntity():SetRuneEnabled( 1, true ) --Haste
+	GameRules:GetGameModeEntity():SetRuneEnabled( 2, false ) --Illusion
+	GameRules:GetGameModeEntity():SetRuneEnabled( 3, false ) --Invis
+	GameRules:GetGameModeEntity():SetRuneEnabled( 4, true ) --Regen
+	GameRules:GetGameModeEntity():SetRuneEnabled( 5, true ) --Bounty
+	
+end
+
+--[[function CMWGameMode:HPIncreaser()
+	local heroes = FindUnitsInRadius( 1, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_DEAD, 0, false )
+	for _, hero in pairs( heroes ) do
+		hero:SetMaxHealth(hero:GetMaxHealth() + 20)
+	end
+	return 60
+end]]
 
 
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 function CMWGameMode:EndGame( victoryTeam )
-	print("CMWGameMode:EndGame( victoryTeam )")
 	
 	--[[
 		local overBoss = Entities:FindByName( nil, "@overboss" )
@@ -399,11 +446,16 @@ end
 ---------------------------------------------------------------------------
 function CMWGameMode:GatherAndRegisterValidTeams()
 --	print( "GatherValidTeams:" )
-
+	local counter = 0
 	local foundTeams = {}
 	for _, playerStart in pairs( Entities:FindAllByClassname( "info_player_start_dota" ) ) do
+		counter = counter + 1
+		print(playerStart:GetOrigin())
 		foundTeams[  playerStart:GetTeam() ] = true
 	end
+
+	print(counter)
+	print("RESULT^^^^^^^")
 
 	local numTeams = TableCount(foundTeams)
 	print( "GatherValidTeams - Found spawns for a total of " .. numTeams .. " teams" )

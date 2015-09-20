@@ -73,11 +73,72 @@ function countAllItemsOnUnit( unit, searchStash )
     return count
 end
 
+
+
+--------------------------------------------------------------------------------
+-- Event: OnItemPurchased
+--------------------------------------------------------------------------------
+
+--[[function CMWGameMode:OnPlayerTeam( event )
+	if event.disconnect then
+		self.isPlayerDisconnected[event.userid] = true
+	end
+end
+
+function CMWGameMode:OnPlayerReconnceted( event )
+	self.isPlayerDisconnected[event.PlayerID] = false
+	hero = PlayerResource:GetPlayer(event.PlayerID):GetAssignedHero()
+
+	hero:SetRespawnTime(10) 
+end]]
+
+function RemoveAbility_and_ReturnCooldown( hero )
+	local cdr
+	if hero:FindAbilityByName("common_arrow_lua") then
+		cdr = hero:FindAbilityByName("common_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("common_arrow_lua")
+	end
+	if hero:FindAbilityByName("earth_arrow_lua") then
+		cdr = hero:FindAbilityByName("earth_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("earth_arrow_lua")
+	end
+	if hero:FindAbilityByName("damnation_arrow_lua") then
+		cdr = hero:FindAbilityByName("damnation_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("damnation_arrow_lua")
+	end
+	if hero:FindAbilityByName("neutron_arrow_lua") then
+		cdr = hero:FindAbilityByName("neutron_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("neutron_arrow_lua")
+	end
+	if hero:FindAbilityByName("poison_arrow_lua") then
+		cdr = hero:FindAbilityByName("poison_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("poison_arrow_lua")
+	end
+	if hero:FindAbilityByName("vampire_arrow_lua") then
+		cdr = hero:FindAbilityByName("vampire_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("vampire_arrow_lua")
+	end
+	if hero:FindAbilityByName("triplex_arrow_lua") then
+		cdr = hero:FindAbilityByName("triplex_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("triplex_arrow_lua")
+	end
+	if hero:FindAbilityByName("fire_arrow_lua") then
+		cdr = hero:FindAbilityByName("fire_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("fire_arrow_lua")
+	end
+	if hero:FindAbilityByName("hunters_arrow_lua") then
+		cdr = hero:FindAbilityByName("hunters_arrow_lua"):GetCooldownTimeRemaining()
+		hero:RemoveAbility("hunters_arrow_lua")
+	end	
+	return cdr
+end
 --------------------------------------------------------------------------------
 -- Event: OnItemPurchased
 --------------------------------------------------------------------------------
 function CMWGameMode:OnItemPurchased( event )
 
+
+	local dota_item = true
 	local ability_name = event.itemname
 	local hero = PlayerResource:GetPlayer(event.PlayerID):GetAssignedHero()
 	
@@ -88,6 +149,7 @@ function CMWGameMode:OnItemPurchased( event )
 	if countAllItemsOnUnit(hero, true) == 7 then
 		hero:SellItem(hero:GetItemInSlot(6))
 	end
+
 
 	--[[if ability_name == "item_shield_of_luck" then
 		if countItemOnUnit(hero, "item_shield_of_luck", false) > 1 then
@@ -109,177 +171,87 @@ function CMWGameMode:OnItemPurchased( event )
 		end
 	end]]
 
+
+	--------------------------------------------------	
+	--Removing the bug when you were not able to buy arrow while invetory is full
+	--------------------------------------------------
+	--[[local cant_buy_arrow_bug = false
+	local item = hero:GetItemInSlot(0)
+	if item then
+		local cd = item:GetCooldownTimeRemaining()
+		temp_name = item:GetAbilityName()
+		hero:RemoveItem(item)
+		cant_buy_arrow_bug = true
+	end]]
+
 	--------------------------------------------------
 	--Arrows
 	--------------------------------------------------
+	if string.find(ability_name, "_arrow") then
+		local arrow_ability = string.gsub(ability_name, "_arrow", "_arrow_lua")
+		arrow_ability = string.gsub(arrow_ability, "item_", "")
+		
 
-	if ability_name == "item_earth_arrow" then 
-		if hero:FindAbilityByName("earth_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
+		dota_item = false    --BUG FIX: Players are not able to buy original DOTA items
+
+		--------------------------------------------------
+		--BUG GIX: Cant buy the same arrow twice in row
+		----------------
+		if hero:FindAbilityByName(arrow_ability) then
+			hero:SetGold((hero:GetGold() + event.itemcost), true)
 			hero:SetGold(0, false)
 			return
 		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
+		----------------
+		--------------------------------------------------
+
+		local cdr = RemoveAbility_and_ReturnCooldown(hero)
 	
-		hero:AddAbility("earth_arrow_lua")
-		hero:FindAbilityByName("earth_arrow_lua"):SetLevel(1)
+		hero:AddAbility(arrow_ability)
+		hero:FindAbilityByName(arrow_ability):SetLevel(1)
+		hero:FindAbilityByName(arrow_ability):StartCooldown(cdr)
 	end
 
-	if ability_name == "item_damnation_arrow" then 
-		if hero:FindAbilityByName("damnation_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
+
+	--------------------------------------------------	
+	--BUG FIX: Players are not able to buy original DOTA items
+	--------------------------------------------------
+
+	if ability_name == "item_staff_of_wizard" then dota_item = false end
+	if ability_name == "item_axe_of_illusion" then dota_item = false end
+	if ability_name == "item_shield_of_protection" then dota_item = false end
+	if ability_name == "item_drums" then dota_item = false end
+	if ability_name == "item_healing_artifact" then dota_item = false end
+	if ability_name == "item_staff_of_moon" then dota_item = false end
+	--if ability_name == "item_protective_wall" then dota_item = false end
+	if ability_name == "item_health_stone" then dota_item = false end
+	if ability_name == "item_mask_of_anabolism" then dota_item = false end
+	if ability_name == "item_dodge_talisman" then dota_item = false end
+	if ability_name == "item_spectres_hood" then dota_item = false end
+	if ability_name == "item_bow_of_wind" then dota_item = false end
+	if ability_name == "item_guard_of_freeze" then dota_item = false end
+	if ability_name == "item_shield_of_luck" then dota_item = false end
+	if ability_name == "item_blood_bow" then dota_item = false end
+	if ability_name == "item_owls" then dota_item = false end
+	if ability_name == "item_timbers_axe" then dota_item = false end
+
 	
-		hero:AddAbility("damnation_arrow_lua")
-		hero:FindAbilityByName("damnation_arrow_lua"):SetLevel(1)
+
+	if dota_item then
+		hero:RemoveItem(findItemOnUnit(hero, ability_name, false))
+		hero:SetGold((hero:GetGold() + event.itemcost), true)
+		hero:SetGold(0, false)
 	end
 
-	if ability_name == "item_neutron_arrow" then 
-		if hero:FindAbilityByName("neutron_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("neutron_arrow_lua")
-		hero:FindAbilityByName("neutron_arrow_lua"):SetLevel(1)
-	end
+	--------------------------------------------------	
+	--Removing the bug when you were not able to buy arrow while invetory is full
+	--------------------------------------------------
 
-	if ability_name == "item_poison_arrow" then 
-		if hero:FindAbilityByName("poison_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("poison_arrow_lua")
-		hero:FindAbilityByName("poison_arrow_lua"):SetLevel(1)
-	end
+	--[[if cant_buy_arrow_bug then
+		hero:AddItemByName(temp_name)
+	end]]
 
-	if ability_name == "item_vampire_arrow" then 
-		if hero:FindAbilityByName("vampire_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("vampire_arrow_lua")
-		hero:FindAbilityByName("vampire_arrow_lua"):SetLevel(1)
-	end
 
-	if ability_name == "item_triplex_arrow" then 
-		if hero:FindAbilityByName("triplex_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("triplex_arrow_lua")
-		hero:FindAbilityByName("triplex_arrow_lua"):SetLevel(1)
-	end
-
-	if ability_name == "item_fire_arrow" then 
-		if hero:FindAbilityByName("fire_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("fire_arrow_lua")
-		hero:FindAbilityByName("fire_arrow_lua"):SetLevel(1)
-	end
-
-	if ability_name == "item_hunters_arrow" then 
-		if hero:FindAbilityByName("hunters_arrow_lua") then
-			hero:SetGold((hero:GetGold() + 100), true)
-			hero:SetGold(0, false)
-			return
-		end
-		
-		hero:RemoveAbility("common_arrow_lua")
-		hero:RemoveAbility("earth_arrow_lua")
-		hero:RemoveAbility("damnation_arrow_lua")
-		hero:RemoveAbility("neutron_arrow_lua")
-		hero:RemoveAbility("poison_arrow_lua")
-		hero:RemoveAbility("vampire_arrow_lua")
-		hero:RemoveAbility("triplex_arrow_lua")
-		hero:RemoveAbility("fire_arrow_lua")
-		hero:RemoveAbility("hunters_arrow_lua")
-	
-		hero:AddAbility("hunters_arrow_lua")
-		hero:FindAbilityByName("hunters_arrow_lua"):SetLevel(1)
-	end
 end
 
 
@@ -320,14 +292,14 @@ function CMWGameMode:OnGameRulesStateChange()
 	if nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		local numberOfPlayers = PlayerResource:GetPlayerCount()
 		if numberOfPlayers > 7 then
-			self.TEAM_KILLS_TO_WIN = 30
-			nCOUNTDOWNTIMER = 1501
+			self.TEAM_KILLS_TO_WIN = 35
+			nCOUNTDOWNTIMER = 2101
 		elseif numberOfPlayers > 4 and numberOfPlayers <= 7 then
-			self.TEAM_KILLS_TO_WIN = 25
-			nCOUNTDOWNTIMER = 1261
+			self.TEAM_KILLS_TO_WIN = 30
+			nCOUNTDOWNTIMER = 1801
 		else
-			self.TEAM_KILLS_TO_WIN = 20
-			nCOUNTDOWNTIMER = 1081
+			self.TEAM_KILLS_TO_WIN = 25
+			nCOUNTDOWNTIMER = 1501
 			--self.TEAM_KILLS_TO_WIN = 10
 			--nCOUNTDOWNTIMER = 301
 		end
@@ -429,7 +401,6 @@ function CMWGameMode:OnEntityKilled( event )
 			if killedUnit:GetTeam() == self.leadingTeam and self.isGameTied == false then
 				local memberID = hero:GetPlayerID()
 				PlayerResource:ModifyGold( memberID, 500, true, 0 )
-				hero:AddExperience( 100, 0, false, false )
 				local name = hero:GetClassname()
 				local victim = killedUnit:GetClassname()
 				local kill_alert =
@@ -437,21 +408,9 @@ function CMWGameMode:OnEntityKilled( event )
 						hero_id = hero:GetClassname()
 					}
 				CustomGameEventManager:Send_ServerToAllClients( "kill_alert", kill_alert )
-			else
-				hero:AddExperience( 50, 0, false, false )
 			end
 		end
-		--Granting XP to all heroes who assisted
-		local allHeroes = HeroList:GetAllHeroes()
-		for _,attacker in pairs( allHeroes ) do
-			--print(killedUnit:GetNumAttackers())
-			for i = 0, killedUnit:GetNumAttackers() - 1 do
-				if attacker == killedUnit:GetAttacker( i ) then
-					--print("Granting assist xp")
-					attacker:AddExperience( 25, 0, false, false )
-				end
-			end
-		end
+		
 		if killedUnit:GetRespawnTime() > 10 then
 			--print("Hero has long respawn time")
 			if killedUnit:IsReincarnating() == true then
@@ -467,13 +426,20 @@ function CMWGameMode:OnEntityKilled( event )
 end
 
 function CMWGameMode:SetRespawnTime( killedTeam, killedUnit )
-	
-	--print("Setting time for respawn")
-	if killedTeam == self.leadingTeam and self.isGameTied == false then
-		killedUnit:SetTimeUntilRespawn(20)
+	if self.isPlayerDisconnected[killedUnit:GetPlayerID()] then
+		if killedTeam == self.leadingTeam and self.isGameTied == false then
+			killedUnit:SetTimeUntilRespawn(20000)
+		else
+			killedUnit:SetTimeUntilRespawn(10000)
+		end
 	else
-		killedUnit:SetTimeUntilRespawn(10)
+		if killedTeam == self.leadingTeam and self.isGameTied == false then
+			killedUnit:SetTimeUntilRespawn(20)
+		else
+			killedUnit:SetTimeUntilRespawn(10)
+		end
 	end
+	
 
 	RespawnPositions = {{-1536,4608,0},{-2304,2560,0},{-1280,1024,0},{437,903,0},{2816,-1280,0},{2816,2048,0},{2668,4608,0}}
 	local vec = killedUnit:GetForwardVector()

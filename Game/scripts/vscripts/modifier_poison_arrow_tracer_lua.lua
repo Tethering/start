@@ -8,7 +8,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_poison_arrow_tracer_lua:GetEffectName()
-	return "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
+	return "particles/econ/items/natures_prophet/natures_prophet_weapon_birdstone/furion_staff_glow_birdstone.vpcf"
 end
 
 --------------------------------------------------------------------------------

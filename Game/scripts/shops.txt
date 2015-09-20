@@ -25,7 +25,9 @@
 		"item"			"item_staff_of_wizard"
 		"item"			"item_axe_of_illusion"
 		"item"			"item_staff_of_moon"
-		"item"			"item_protective_wall"
+		"item"			"item_owls"
+		"item"			"item_timbers_axe"
+		//"item"			"item_protective_wall"
 	}
 			
 	"misc"

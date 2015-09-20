@@ -3,7 +3,8 @@ LinkLuaModifier( "modifier_triplex_arrow_stun_lua", LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
 
 function triplex_arrow_lua:OnSpellStart()
-	
+	UnitsUnderAttack = {}
+
 	self.mirana_arrow_width = self:GetSpecialValueFor( "arrow_width" )
 	self.mirana_arrow_speed = self:GetSpecialValueFor( "arrow_speed" )
 	self.mirana_arrow_distance = self:GetSpecialValueFor( "arrow_range" )
@@ -55,7 +56,15 @@ function triplex_arrow_lua:OnProjectileHit( hTarget, vLocation )
 	
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 	
-		
+		for key, unit in pairs(UnitsUnderAttack) do
+			if hTarget == unit then
+				return false
+			end
+		end
+
+		table.insert(UnitsUnderAttack, hTarget)
+
+
 		EmitSoundOn( "Hero_Mirana.ArrowImpact", hTarget )
 
 		if hTarget:FindModifierByName("modifier_shield_of_luck") then

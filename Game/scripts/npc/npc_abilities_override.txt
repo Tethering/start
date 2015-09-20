@@ -5,7 +5,7 @@
 	
 	// ITEM SHOPS---------------------------------------------------
  
-        "item_blink"                   			"REMOVE"
+        "item_blink"                   	"REMOVE"
         "item_blades_of_attack"                 "REMOVE"
         "item_broadsword"                       "REMOVE"
         "item_chainmail"                        "REMOVE"

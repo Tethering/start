@@ -31,7 +31,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"ItemCost"						"350"
+		"ItemCost"						"1050"
 		"ItemShopTags"					"int;regen_mana;move_speed;hard_to_tag"
 		"ItemQuality"					"secret_shop"
 		"ItemAliases"					"cyclone euls; eul's scepter of divinity; staff of wizard"
@@ -61,6 +61,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"cyclone_duration"		"2.5"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cyclone_damage"		"0"
+			}
 		}
 	}
 	
@@ -88,7 +93,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"ItemCost"						"700"
+		"ItemCost"						"2100"
 		"ItemShopTags"					"hard_to_tag"
 		"ItemQuality"					"secret_shop"
 		"ItemAliases"					"manta style; axe of illusion"
@@ -220,7 +225,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"400"
+		"ItemCost"						"900"
 		"ItemQuality"					"secret_shop"
 		"ItemShopTags"					"armor;boost_armor"
 		"ItemAliases"					"buckler; shield of protection"
@@ -334,7 +339,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"
+		"ItemCost"						"1650"
 		"ItemQuality"					"secret_shop"
 		"ItemAliases"					"buckler; shield of protection"
 		"ItemShopTags"					"move_speed;hard_to_tag"
@@ -449,7 +454,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"1500"
 		"ItemQuality"					"secret_shop"
 		"ItemShopTags"					"boost_health"
 		"ItemAliases"					"mechanism;mekansm; healing artifact"
@@ -510,11 +515,11 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"50"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"2000"
 		"ItemQuality"					"secret_shop"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
@@ -553,7 +558,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"400"
+		"ItemCost"						"1200"
 		"ItemQuality"					"secret_shop"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
@@ -617,6 +622,122 @@
 	}
 
 	//=================================================================================================================
+	// Owls
+	//=================================================================================================================
+	
+	"item_owls" 
+	{
+	    "ID"           			"2009"
+	    "BaseClass"    			"item_datadriven"
+	    "AbilityTextureName" 	"item_wisps"
+	    "ItemQuality"  			"secret_shop"
+
+	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		//"AbilityUnitTargetTeam" 	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType" 	"DOTA_UNIT_TARGET_TREE"
+		//"AbilityCastAnimation" 		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost" 			"0"
+		"AbilityCastRange"			"200"
+
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+	    "ItemCost"     			"350"
+
+	    "SideShop"     			"0" 
+	    "SecretShop"   			"0"
+
+	    "ItemStackable" 		"1"
+	    "ItemPermanent" 		"1"
+
+	    "ItemInitialCharges" 	"2" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" 	"1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" 	"1" //The active ability needs charges to be used - Urn
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision"				"800"
+			}
+		}
+
+	    "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_owls.lua"
+				"Function"				"item_owls_on_spell_start"
+			}
+		}
+	} 
+
+	//=================================================================================================================
+	// Timber's Axe
+	//=================================================================================================================
+	
+	"item_timbers_axe" 
+	{
+	    "ID"           			"2010"
+	    "BaseClass"    			"item_datadriven"
+	    "AbilityTextureName" 	"item_timbers_axe"
+	    "ItemQuality"  			"secret_shop"
+
+	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		//"AbilityUnitTargetTeam" 	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType" 	"DOTA_UNIT_TARGET_TREE"
+		//"AbilityCastAnimation" 		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost" 			"0"
+		"AbilityCastRange"			"200"
+		"AbilityCooldown"         	"10.0"
+
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+
+	    "ItemCost"     			"350"
+
+	    "SideShop"     			"0" 
+	    "SecretShop"   			"0"
+
+	    // Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"super_heal"			"80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
+			}
+		}
+
+	    "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/item_timbers_axe.lua"
+				"Function"				"item_timbers_axe_on_spell_start"
+			}
+		}
+	} 
+
+	//=================================================================================================================
 	// Health Stone / Vitality Booster
 	//=================================================================================================================
 	"item_health_stone"
@@ -635,7 +756,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"
+		"ItemCost"						"1800"
 		"ItemShopTags"					"health_pool"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"vitality booster; health stone"
@@ -672,7 +793,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"800"
+		"ItemCost"						"2400"
 		"ItemShopTags"					"unique"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"morbid mask; mask of anabolism"
@@ -709,7 +830,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"1500"
 		"ItemShopTags"					"unique"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"morbid mask; mask of anabolism"
@@ -746,7 +867,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"400"
+		"ItemCost"						"1200"
 		"ItemShopTags"					"regen_health;magic_resist"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"hood of defiance; spectre's hood"
@@ -794,7 +915,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"
+		"ItemCost"						"1500"
 		"ItemShopTags" 					"attack_speed"
 		"ItemQuality" 					"rare"
 		"ItemAliases"					"gloves of haste; bow of wind"
@@ -835,7 +956,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"650"
+		"ItemCost"						"2500"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"shiva's guard; guard of freeze"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -909,7 +1030,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"
+		"ItemCost"						"1800"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"shield of luck"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -957,7 +1078,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1000"
+		"ItemCost"						"3000"
 		"ItemShopTags"					"damage;crit"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"daedalus; blood bow"
@@ -998,11 +1119,11 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_earth_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
-		"ItemSellable" 					"0"
+		"ItemSellable" 					"1"
 		"ItemPurchasable" 				"1"
-		"ItemDroppable" 				"0"
+		"ItemDroppable" 				"1"
 		
 		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
 		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
@@ -1023,11 +1144,11 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_damnation_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
-		"ItemSellable" 					"0"
+		"ItemSellable" 					"1"
 		"ItemPurchasable" 				"1"
-		"ItemDroppable" 				"0"
+		"ItemDroppable" 				"1"
 		
 		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
 		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
@@ -1048,7 +1169,7 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_mjollnir"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
 		"ItemSellable" 					"0"
 		"ItemPurchasable" 				"1"
@@ -1073,11 +1194,12 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_poison_arrow"
 		
-		"ItemCost" 						"1000"
-		"ItemKillable" 					"0" 
-		"ItemSellable" 					"0"
+		"ItemCost" 						"3000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"	
+		"ItemKillable" 					"1" 
+		"ItemSellable" 					"1"
 		"ItemPurchasable" 				"1"
-		"ItemDroppable" 				"0"
+		"ItemDroppable" 				"1"
 		
 		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
 		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
@@ -1098,11 +1220,11 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_vampire_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
-		"ItemSellable" 					"0"
+		"ItemSellable" 					"1"
 		"ItemPurchasable" 				"1"
-		"ItemDroppable" 				"0"
+		"ItemDroppable" 				"1"
 		
 		"ItemInitialCharges" 			"1" //How many charges should the item start with - Tango x3 
 		"ItemDisplayCharges" 			"0" //Hide the charges of the item - Aegis 
@@ -1123,7 +1245,7 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_triplex_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
 		"ItemSellable" 					"0"
 		"ItemPurchasable" 				"1"
@@ -1148,7 +1270,7 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_fire_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
 		"ItemSellable" 					"0"
 		"ItemPurchasable" 				"1"
@@ -1173,7 +1295,7 @@
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName" 			"item_hunters_arrow"
 		
-		"ItemCost" 						"1000"
+		"ItemCost" 						"3000"
 		"ItemKillable" 					"0" 
 		"ItemSellable" 					"0"
 		"ItemPurchasable" 				"1"
