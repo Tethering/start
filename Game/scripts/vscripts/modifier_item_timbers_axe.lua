@@ -30,10 +30,8 @@ end
 function modifier_item_timbers_axe:GetModifierConstantHealthRegen()
 	local parent = self:GetParent()
 	if parent.timbers_axe_bonus then
-		parent.timbers_axe_bonus = nil
 		return self:GetAbility():GetSpecialValueFor("super_heal")/self:GetAbility():GetSpecialValueFor("duration")
 	else
-		parent.timbers_axe_bonus = nil
 		return self:GetAbility():GetSpecialValueFor("heal")/self:GetAbility():GetSpecialValueFor("duration")
 	end
 end

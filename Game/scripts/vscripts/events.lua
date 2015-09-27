@@ -426,19 +426,19 @@ function CMWGameMode:OnEntityKilled( event )
 end
 
 function CMWGameMode:SetRespawnTime( killedTeam, killedUnit )
-	if self.isPlayerDisconnected[killedUnit:GetPlayerID()] then
+	--[[if self.isPlayerDisconnected[killedUnit:GetPlayerID()] then
 		if killedTeam == self.leadingTeam and self.isGameTied == false then
 			killedUnit:SetTimeUntilRespawn(20000)
 		else
 			killedUnit:SetTimeUntilRespawn(10000)
 		end
-	else
+	else]]
 		if killedTeam == self.leadingTeam and self.isGameTied == false then
 			killedUnit:SetTimeUntilRespawn(20)
 		else
 			killedUnit:SetTimeUntilRespawn(10)
 		end
-	end
+	--end
 	
 
 	RespawnPositions = {{-1536,4608,0},{-2304,2560,0},{-1280,1024,0},{437,903,0},{2816,-1280,0},{2816,2048,0},{2668,4608,0}}

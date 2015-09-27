@@ -29,8 +29,8 @@
 		
 		// Attack
 		//-------------------------------------------------------------------------------------------------------------
-		"AttackDamageMin"			"20"							// Damage range min.
-		"AttackDamageMax"			"20"							// Damage range max.
+		"AttackDamageMin"			"25"							// Damage range min.
+		"AttackDamageMax"			"25"							// Damage range max.
 		
 		// Attributes
 		//-------------------------------------------------------------------------------------------------------------

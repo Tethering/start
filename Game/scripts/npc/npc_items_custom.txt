@@ -632,7 +632,7 @@
 	    "AbilityTextureName" 	"item_wisps"
 	    "ItemQuality"  			"secret_shop"
 
-	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		//"AbilityUnitTargetTeam" 	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType" 	"DOTA_UNIT_TARGET_TREE"
 		//"AbilityCastAnimation" 		"ACT_DOTA_CAST_ABILITY_1"
@@ -688,7 +688,7 @@
 	    "AbilityTextureName" 	"item_timbers_axe"
 	    "ItemQuality"  			"secret_shop"
 
-	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityBehavior" 			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		//"AbilityUnitTargetTeam" 	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType" 	"DOTA_UNIT_TARGET_TREE"
 		//"AbilityCastAnimation" 		"ACT_DOTA_CAST_ABILITY_1"

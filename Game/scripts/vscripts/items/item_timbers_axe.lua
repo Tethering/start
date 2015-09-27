@@ -7,12 +7,15 @@ function item_timbers_axe_on_spell_start(keys)
 	item = keys.ability
 
 	caster.timbers_axe_bonus = false
+
 	if tree.assigned_owl then
 		owl = tree.assigned_owl
 
 		UTIL_Remove(owl)
 
 		caster.timbers_axe_bonus = true
+	else
+		caster.timbers_axe_bonus = false
 	end
 	caster:AddNewModifier( caster, item, "modifier_item_timbers_axe", { duration = 10 } )
 
